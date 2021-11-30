@@ -17,6 +17,9 @@ enum TemplateType {
 }
 
 enum Event {
+  ADDED
+  DELETED
+  MODIFIED
   RENDERED
 }
 
@@ -41,4 +44,5 @@ model Audit {
   template     Template @relation(fields: [templateId], references: [id])
   event        Event
   renderedText String
+  meta         Json?
 }
