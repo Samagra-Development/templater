@@ -30,7 +30,7 @@ model Template {
   type      TemplateType
   useCase   String
   body      String
-  meta      Json
+  meta      Json?
   user      String       @db.Uuid
   tag       String[]
   Audit     Audit[]
