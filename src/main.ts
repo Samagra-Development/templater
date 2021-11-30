@@ -2,6 +2,10 @@ import { AppModule } from './app.module';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { PrismaService } from './prisma.service';
+import { stringify, parse } from 'json-bigint';
+
+// Handing BigInt
+JSON.stringify = stringify;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
