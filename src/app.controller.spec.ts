@@ -1,6 +1,8 @@
+import { TemplateType } from '.prisma/client';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { RenderDto, RenderResponse } from './dto/render';
 
 describe('AppController', () => {
   let appController: AppController;
@@ -15,8 +17,21 @@ describe('AppController', () => {
   });
 
   describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
+    it('should render template', () => {
+      const data: RenderDto = {
+        id: 1,
+        data: {
+          test: 'data',
+        },
+      };
+
+      const response: RenderResponse = {
+        processed: 'string',
+        templateType: TemplateType.JS_TEMPLATE_LITERALS,
+        data: data.data,
+        template: 'test',
+      };
+      expect(appController.render(data)).toBe(response);
     });
   });
 });

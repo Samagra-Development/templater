@@ -1,0 +1,48 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-arm64-openssl-1.1.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum TemplateType {
+  JINJA
+  JS_TEMPLATE_LITERALS
+}
+
+enum Event {
+  ADDED
+  DELETED
+  MODIFIED
+  RENDERED
+}
+
+model Template {
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+  id        BigInt       @id @default(autoincrement())
+  type      TemplateType
+  useCase   String
+  body      String
+  meta      Json?
+  user      String       @db.Uuid
+  tag       String[]
+  Audit     Audit[]
+}
+
+model Audit {
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  id           BigInt   @id @default(autoincrement())
+  templateId   BigInt
+  template     Template @relation(fields: [templateId], references: [id])
+  event        Event
+  renderedText String
+  meta         Json?
+}
