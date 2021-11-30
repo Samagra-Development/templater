@@ -14,4 +14,8 @@ export class JsTLService {
   getObjPath = (path, obj, fallback = '') => {
     return path.split('.').reduce((res, key) => res[key] || fallback, obj);
   };
+
+  render = (templateText: string, data: any, fallback: string = '') => {
+    return this.interpolate(templateText, data, fallback);
+  };
 }
