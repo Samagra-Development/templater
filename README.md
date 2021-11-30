@@ -17,3 +17,7 @@ $ yarn install
 
 1. Javascript Literals + JSON
 2. Jinja (Coming Soon)
+
+## Abbreviations
+
+1. JSTL = Javascript Template Literals.
