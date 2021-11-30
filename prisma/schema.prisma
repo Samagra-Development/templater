@@ -17,6 +17,9 @@ enum TemplateType {
 }
 
 enum Event {
+  ADDED
+  DELETED
+  MODIFIED
   RENDERED
 }
 
@@ -27,7 +30,7 @@ model Template {
   type      TemplateType
   useCase   String
   body      String
-  meta      Json
+  meta      Json?
   user      String       @db.Uuid
   tag       String[]
   Audit     Audit[]
@@ -41,4 +44,5 @@ model Audit {
   template     Template @relation(fields: [templateId], references: [id])
   event        Event
   renderedText String
+  meta         Json?
 }
