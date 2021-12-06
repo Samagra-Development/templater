@@ -26,7 +26,7 @@ services:
       HASURA_GRAPHQL_ADMIN_SECRET: ${HASURA_ADMIN_PASS}
 
   templater:
-    image: 968da5a7d6d7b18c1757975495e7aa
+    image: samagragovernance/templater:latest
     ports:
       - '3007:3000'
     depends_on:
