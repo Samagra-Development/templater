@@ -1,22 +1,28 @@
-FROM node:14
-LABEL maintainer = "Chakshu Gautam"
-LABEL maintainer_email = "chakshu@samagragovernance.in"
-
-# Default value; will be overridden by build_args, if passed
-ARG node_env=production
-
-ENV NODE_ENV $node_env
+FROM node:14 AS builder
 
 # Create app directory
 WORKDIR /app
 
-ADD package.json ./
-ADD yarn.lock ./
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+COPY package.json ./
+COPY yarn.lock ./
+COPY prisma ./prisma/
 
 # Install app dependencies
 RUN yarn install
+# Required if not done in postinstall
+# RUN npx prisma generate
 
-ADD . .
+COPY . .
 
-EXPOSE 3001
+RUN yarn run build
+
+FROM node:12
+
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./
+COPY --from=builder /app/yarn.lock ./
+COPY --from=builder /app/dist ./dist
+
+EXPOSE 3000
 CMD [ "npm", "run", "start:prod" ]
