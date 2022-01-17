@@ -1,0 +1,184 @@
+openapi: 3.0.0
+info:
+  title: Template Manager
+  description: Template Manager API specification
+  version: 0.1.0
+
+paths:
+  /:
+    post:
+      tags:
+        - CRUD
+      description: Create a new Template
+      requestBody:
+        description: BAP searches for services
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                templateType:
+                  $ref: '#/components/schemas/TemplateType'
+                useCase:
+                  $ref: '#/components/schemas/UseCase' # TODO: Update this
+                body:
+                  type: string
+                meta:
+                  type: object
+                user:
+                  type: string
+                  format: uuid
+                tag:
+                  type: array
+                  items:
+                    type: string
+              required:
+                - body
+                - user
+                - templateType
+      responses:
+        '200':
+          description: Acknowledgement of template being created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  template:
+                    $ref: '#/components/schemas/Template'
+
+  /{templateID}:
+    get:
+      tags:
+        - CRUD
+      description: Get a template by ID
+      parameters:
+        - in: path
+          name: templateID
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the template to get
+      responses:
+        '200':
+          description: Acknowledgement of template being created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  template:
+                    $ref: '#/components/schemas/Template'
+    delete:
+      tags:
+        - CRUD
+      description: Get a template by ID
+      parameters:
+        - in: path
+          name: templateID
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the template to get
+      responses:
+        '200':
+          description: Acknowledgement of template being created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  template:
+                    $ref: '#/components/schemas/Template'
+
+    put:
+      tags:
+        - CRUD
+      description: Create a new Template
+      parameters:
+        - in: path
+          name: templateID
+          schema:
+            type: integer
+          required: true
+          description: Numeric ID of the template to get
+      requestBody:
+        description: BAP searches for services
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                templateType:
+                  $ref: '#/components/schemas/TemplateType'
+                useCase:
+                  $ref: '#/components/schemas/UseCase' # TODO: Update this
+                body:
+                  type: string
+                meta:
+                  type: object
+                user:
+                  type: string
+                  format: uuid
+                tag:
+                  type: array
+                  items:
+                    type: string
+              required:
+                - body
+                - user
+                - templateType
+      responses:
+        '200':
+          description: Acknowledgement of template being created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  template:
+                    $ref: '#/components/schemas/Template'
+
+components:
+  schemas:
+    Template:
+      description: A template definition
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        templateType:
+          $ref: '#/components/schemas/TemplateType'
+        useCase:
+          $ref: '#/components/schemas/UseCase' # TODO: Update this
+        body:
+          type: string
+        meta:
+          type: object
+        user:
+          type: string
+          format: uuid
+        tag:
+          type: array
+          items:
+            type: string
+      required:
+        - body
+        - user
+        - templateType
+
+    TemplateType:
+      description: An element in the feedback form. It can be question or an answer to the question.
+      type: string
+      enum:
+        - Jinja
+        - ES6 Template Literals
+
+    UseCase:
+      description: An element in the feedback form. It can be question or an answer to the question.
+      type: string
+      enum:
+        - Building PDF
+        - Notifications
+        - Other
