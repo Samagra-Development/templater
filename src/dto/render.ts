@@ -10,4 +10,5 @@ export interface RenderResponse {
   templateType: TemplateType;
   data: any;
   template: string;
+  meta?: any;
 }

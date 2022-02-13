@@ -36,6 +36,7 @@ export class AppController {
       templateType: TemplateType.JS_TEMPLATE_LITERALS,
       data: renderDto.data,
       template: 'test',
+      meta: template.meta,
     };
   }
 

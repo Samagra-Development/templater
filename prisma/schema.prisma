@@ -16,6 +16,17 @@ enum TemplateType {
   JS_TEMPLATE_LITERALS
 }
 
+enum TransformerType {
+  OPTIONS
+  FUNCTION_EXTERNAL //https://www.w3.org/TR/did-core/ => "did:example:123456789abcdefghi"
+  FUNCTION_INTERNAL
+}
+
+enum Language {
+  JAVASCRIPT
+  TYPESCRIPT
+}
+
 enum Event {
   ADDED
   DELETED
@@ -23,17 +34,25 @@ enum Event {
   RENDERED
 }
 
+enum FunctionExecutionEvent {
+  ADDED
+  DELETED
+  MODIFIED
+  RUN
+}
+
 model Template {
-  createdAt DateTime     @default(now())
-  updatedAt DateTime     @updatedAt
-  id        BigInt       @id @default(autoincrement())
-  type      TemplateType
-  useCase   String
-  body      String
-  meta      Json?
-  user      String       @db.Uuid
-  tag       String[]
-  Audit     Audit[]
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  id             BigInt           @id @default(autoincrement())
+  type           TemplateType
+  useCase        String
+  body           String
+  meta           Json?
+  user           String           @db.Uuid
+  tag            String[]
+  Audit          Audit[]
+  ExecutionAudit ExecutionAudit[]
 }
 
 model Audit {
@@ -45,4 +64,52 @@ model Audit {
   event        Event
   renderedText String
   meta         Json?
+}
+
+model Transformer {
+  createdAt  DateTime        @default(now())
+  updatedAt  DateTime        @updatedAt
+  id         BigInt          @id @default(autoincrement())
+  type       TransformerType
+  meta       Json?
+  sampleData Json?
+
+  // When the type is FunctionRef
+  functionDID    String
+  ExecutionAudit ExecutionAudit[]
+}
+
+model ExternalLambda {
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  id         BigInt   @id @default(autoincrement())
+  uri        String
+  meta       Json?
+  sampleData Json?
+}
+
+model Lambda {
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  id        BigInt   @id @default(autoincrement())
+  tags      String[]
+  name      String
+  body      String
+  user      String   @db.Uuid
+  isOpen    Boolean
+  isActive  Boolean
+  isPublic  Boolean
+  language  Language
+}
+
+model ExecutionAudit {
+  createdAt     DateTime               @default(now())
+  updatedAt     DateTime               @updatedAt
+  id            BigInt                 @id @default(autoincrement())
+  event         FunctionExecutionEvent
+  meta          Json?
+  transformerId BigInt
+  Transformer   Transformer            @relation(fields: [transformerId], references: [id])
+  templateId    BigInt
+  Template      Template               @relation(fields: [templateId], references: [id])
 }
