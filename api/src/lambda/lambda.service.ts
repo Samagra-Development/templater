@@ -4,17 +4,26 @@ import { LambdaRunFeedback } from './interfaces';
 import { NodeVM, VM } from 'vm2';
 import { performance } from 'perf_hooks';
 import ts = require('typescript');
+import { PrismaService } from '../prisma.service';
 
 @Injectable()
 export class LambdaService {
   vm: NodeVM;
-  constructor() {
+  constructor(private prisma: PrismaService) {
     this.vm = new NodeVM({
       console: 'redirect',
       require: {
         external: false,
       },
     });
+  }
+
+  async getLambdaFromDID(did: string): Promise<Lambda> {
+    // find lambda by did from Prisma. Example did = 'did:internal:1'
+    // Get the last part of the did
+    const didParts = did.split(':');
+    const id = didParts[didParts.length - 1];
+    return await this.prisma.lambda.findUnique({ where: { id: Number(id) } });
   }
 
   process(

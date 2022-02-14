@@ -14,25 +14,31 @@ export class LambdaController {
 
   @Post('/process')
   async render(@Body() renderDto: RenderDto): Promise<LambdaRunFeedback> {
-    return this.lambdaService.process(
-      await this.prisma.lambda.findUnique({
-        where: { id: Number(renderDto.id) },
-      }),
-      renderDto.data,
-    );
+    const lambda = await this.prisma.lambda.findUnique({
+      where: { id: Number(renderDto.id) },
+    });
+    console.log({ lambda });
+    return this.lambdaService.process(lambda, renderDto.data);
   }
 
   @Post('/')
   async addLambda(
-    @Body() data: Prisma.LambdaCreateInput,
-    testData: any,
-  ): Promise<Lambda> {
-    if (this.lambdaService.process(data, testData).statusCode === 1) {
+    @Body() data: { lambda: Prisma.LambdaCreateInput; testData: any },
+  ): Promise<Lambda | LambdaRunFeedback> {
+    const testDataProcessResult = this.lambdaService.process(
+      data.lambda,
+      data.testData,
+    );
+    if (testDataProcessResult.statusCode === 1) {
       return this.prisma.lambda.create({
-        data,
+        data: data.lambda,
       });
     } else {
-      throw new Error('Lambda not valid');
+      console.error(
+        "Can't add lambda, test data failed",
+        testDataProcessResult,
+      );
+      return testDataProcessResult;
     }
   }
 
