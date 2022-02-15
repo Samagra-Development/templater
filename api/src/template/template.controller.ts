@@ -5,10 +5,12 @@ import { TransformerService } from '../transformer/transformer.service';
 import { RenderDto, RenderResponse } from '../dto/render';
 import { JsTLService } from '../jstl/jstl.service';
 import { TemplateService } from './template.service';
+import { JinjaService } from 'src/jinja/jinja.service';
 
 @Controller('/')
 export class TemplateController {
   constructor(
+    private readonly jinjaService: JinjaService,
     private readonly prisma: PrismaService,
     private readonly transformerService: TransformerService,
     private readonly templateService: TemplateService,
@@ -29,14 +31,21 @@ export class TemplateController {
     });
     let processed;
 
+    let transformedData = renderDto.data;
+
     switch (template.type) {
       case TemplateType.JINJA:
-        throw 'Not implemented';
+        for (const transformer of template.transformers) {
+          transformedData = await this.transformerService.process(
+            transformer.transformer,
+            transformedData,
+            transformer.path,
+          );
+        }
+        processed = this.jinjaService.render(template.body, transformedData);
 
       case TemplateType.JS_TEMPLATE_LITERALS:
-        let transformedData = renderDto.data;
         for (const transformer of template.transformers) {
-          console.log({ transformer });
           transformedData = await this.transformerService.process(
             transformer.transformer,
             transformedData,

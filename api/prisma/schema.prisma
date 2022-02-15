@@ -14,6 +14,7 @@ datasource db {
 enum TemplateType {
   JINJA //https://mozilla.github.io/nunjucks/
   JS_TEMPLATE_LITERALS //JSTL
+  EJS //https://ejs.co/
 }
 
 enum TransformerType {

@@ -9,6 +9,8 @@ import { LambdaController } from './lambda/lambda.controller';
 import { TransformerService } from './transformer/transformer.service';
 import { TransformerController } from './transformer/transformer.controller';
 import { TemplateController } from './template/template.controller';
+import { JinjaService } from './jinja/jinja.service';
+import { EjsService } from './ejs/ejs.service';
 
 @Module({
   imports: [],
@@ -21,6 +23,8 @@ import { TemplateController } from './template/template.controller';
     AuditService,
     LambdaService,
     TransformerService,
+    JinjaService,
+    EjsService,
   ],
 })
 export class AppModule {}
