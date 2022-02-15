@@ -44,7 +44,6 @@ export class TransformerController {
         consoleOutput: [],
       };
     }
-    console.log({ result });
     return {
       statusCode: 1,
       statusMessage: 'SUCCESS',

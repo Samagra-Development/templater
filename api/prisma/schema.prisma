@@ -41,18 +41,28 @@ enum FunctionExecutionEvent {
   RUN
 }
 
+model TransformerPathMapping {
+  id            BigInt      @id @default(autoincrement())
+  path          String
+  transformer   Transformer @relation(fields: [transformerId], references: [id])
+  Template      Template?   @relation(fields: [templateId], references: [id])
+  templateId    BigInt?
+  transformerId BigInt
+}
+
 model Template {
-  createdAt      DateTime         @default(now())
-  updatedAt      DateTime         @updatedAt
-  id             BigInt           @id @default(autoincrement())
+  createdAt      DateTime                 @default(now())
+  updatedAt      DateTime                 @updatedAt
+  id             BigInt                   @id @default(autoincrement())
   type           TemplateType
-  useCase        String
+  useCase        String?
   body           String
   meta           Json?
-  user           String           @db.Uuid
+  user           String                   @db.Uuid
   tag            String[]
   Audit          Audit[]
   ExecutionAudit ExecutionAudit[]
+  transformers   TransformerPathMapping[]
 }
 
 model Audit {
@@ -75,8 +85,9 @@ model Transformer {
   sampleData Json?
 
   // When the type is FunctionRef
-  functionDID    String?
-  ExecutionAudit ExecutionAudit[]
+  functionDID            String?
+  ExecutionAudit         ExecutionAudit[]
+  TransformerPathMapping TransformerPathMapping[]
 }
 
 model ExternalLambda {

@@ -11,6 +11,9 @@ export class TemplateService {
   ): Promise<Template | null> {
     return this.prisma.template.findUnique({
       where: userWhereUniqueInput,
+      include: {
+        transformers: true,
+      },
     });
   }
 

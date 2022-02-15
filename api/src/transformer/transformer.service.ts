@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Lambda } from '@prisma/client';
+import { Lambda, Transformer } from '@prisma/client';
 import { TransformerType } from '@prisma/client';
 import { LambdaService } from '../lambda/lambda.service';
 
@@ -7,14 +7,20 @@ import { LambdaService } from '../lambda/lambda.service';
 export class TransformerService {
   constructor(private lambdaService: LambdaService) {}
 
-  process(
-    arg0: Lambda,
+  async process(
+    transformer: Transformer,
     data: any,
-  ):
-    | import('../lambda/interfaces').RunFeedback
-    | PromiseLike<import('../lambda/interfaces').RunFeedback> {
-    throw new Error('Method not implemented.');
+    path: string,
+  ): Promise<any> {
+    if (transformer.type === TransformerType.OPTIONS) {
+      return this.processOptions(transformer, data, path);
+    } else if (transformer.type === TransformerType.FUNCTION_INTERNAL) {
+      return this.processInternalFunction(transformer, data, path);
+    } else if (transformer.type === TransformerType.FUNCTION_EXTERNAL) {
+      return data;
+    }
   }
+
   processOptions(
     transformerConfig: {
       type: TransformerType;

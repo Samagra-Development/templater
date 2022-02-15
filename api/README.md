@@ -70,8 +70,8 @@ $ yarn install
     }
   ],
   "meta": {},
-  "body: "Hello World",
-  "templateType": "JSTL",
+  "body": "Hello World",
+  "templateType": "JSTL"
 }
 ```
 

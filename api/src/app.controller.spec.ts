@@ -15,23 +15,4 @@ describe('AppController', () => {
 
     appController = app.get<AppController>(AppController);
   });
-
-  describe('root', () => {
-    it('should render template', () => {
-      const data: RenderDto = {
-        id: 1,
-        data: {
-          test: 'data',
-        },
-      };
-
-      const response: RenderResponse = {
-        processed: 'string',
-        templateType: TemplateType.JS_TEMPLATE_LITERALS,
-        data: data.data,
-        template: 'test',
-      };
-      expect(appController.render(data)).toBe(response);
-    });
-  });
 });

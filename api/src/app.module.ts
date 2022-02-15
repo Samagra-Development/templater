@@ -1,4 +1,3 @@
-import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { Module } from '@nestjs/common';
 import { PrismaService } from './prisma.service';
@@ -13,12 +12,7 @@ import { TemplateController } from './template/template.controller';
 
 @Module({
   imports: [],
-  controllers: [
-    AppController,
-    LambdaController,
-    TransformerController,
-    TemplateController,
-  ],
+  controllers: [LambdaController, TransformerController, TemplateController],
   providers: [
     AppService,
     PrismaService,
