@@ -75,7 +75,7 @@ model Transformer {
   sampleData Json?
 
   // When the type is FunctionRef
-  functionDID    String
+  functionDID    String?
   ExecutionAudit ExecutionAudit[]
 }
 

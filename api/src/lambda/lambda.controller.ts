@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { Template, TemplateType, Prisma, Lambda } from '@prisma/client';
 import { RenderDto, RenderResponse } from 'src/dto/render';
 import { PrismaService } from 'src/prisma.service';
-import { LambdaRunFeedback } from './interfaces';
+import { RunFeedback } from './interfaces';
 import { LambdaService } from './lambda.service';
 
 @Controller('lambda')
@@ -13,7 +13,7 @@ export class LambdaController {
   ) {}
 
   @Post('/process')
-  async render(@Body() renderDto: RenderDto): Promise<LambdaRunFeedback> {
+  async render(@Body() renderDto: RenderDto): Promise<RunFeedback> {
     const lambda = await this.prisma.lambda.findUnique({
       where: { id: Number(renderDto.id) },
     });
@@ -24,7 +24,7 @@ export class LambdaController {
   @Post('/')
   async addLambda(
     @Body() data: { lambda: Prisma.LambdaCreateInput; testData: any },
-  ): Promise<Lambda | LambdaRunFeedback> {
+  ): Promise<Lambda | RunFeedback> {
     const testDataProcessResult = this.lambdaService.process(
       data.lambda,
       data.testData,

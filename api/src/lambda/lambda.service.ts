@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Lambda, Language, Prisma } from '@prisma/client';
-import { LambdaRunFeedback } from './interfaces';
+import { RunFeedback } from './interfaces';
 import { NodeVM, VM } from 'vm2';
 import { performance } from 'perf_hooks';
 import ts = require('typescript');
@@ -26,10 +26,7 @@ export class LambdaService {
     return await this.prisma.lambda.findUnique({ where: { id: Number(id) } });
   }
 
-  process(
-    lambda: Lambda | Prisma.LambdaCreateInput,
-    data: any,
-  ): LambdaRunFeedback {
+  process(lambda: Lambda | Prisma.LambdaCreateInput, data: any): RunFeedback {
     // Regex to verify function(data) signature
     const regex = /^function\s*\(([^)]*)\)\s*\{/;
     const match = regex.exec(lambda.body);

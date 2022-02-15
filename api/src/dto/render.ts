@@ -3,6 +3,7 @@ import { TemplateType } from '.prisma/client';
 export interface RenderDto {
   id: number;
   data: any;
+  path?: string;
 }
 
 export interface RenderResponse {
@@ -11,4 +12,10 @@ export interface RenderResponse {
   data: any;
   template: string;
   meta?: any;
+}
+
+export interface SampleData {
+  data: any;
+  path: string;
+  response: any;
 }

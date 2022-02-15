@@ -1,4 +1,4 @@
-export interface LambdaRunFeedback {
+export interface RunFeedback {
   statusCode: number;
   statusMessage: string;
   error?: string;
