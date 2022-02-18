@@ -4,7 +4,7 @@ import { RunFeedback } from './interfaces';
 import { NodeVM, VM } from 'vm2';
 import { performance } from 'perf_hooks';
 import ts = require('typescript');
-import { PrismaService } from '../prisma.service';
+import { PrismaService } from '../../prisma.service';
 
 @Injectable()
 export class LambdaService {

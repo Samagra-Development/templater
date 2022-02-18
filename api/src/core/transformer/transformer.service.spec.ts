@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { TransformerType } from '@prisma/client';
 import { LambdaService } from '../lambda/lambda.service';
-import { PrismaService } from '../prisma.service';
+import { PrismaService } from '../../prisma.service';
 import { TransformerService } from './transformer.service';
 
 describe('TransformerService', () => {

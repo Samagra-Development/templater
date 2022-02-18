@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 import {
   Flex,
   Box,
@@ -7,74 +7,53 @@ import {
   useColorModeValue,
   Button,
   LinkProps,
-} from '@chakra-ui/react';
-import NextLink from 'next/link';
-import { useRouter } from 'next/router';
+  SimpleGrid,
+} from "@chakra-ui/react";
 
-import { isActive } from '../lib/routes';
-import { Alert } from './Alert';
+dynamic(import("ace-builds/src-noconflict/ace"), { ssr: false });
+dynamic(import("ace-builds/src-noconflict/mode-html"), { ssr: false });
+dynamic(import("ace-builds/src-noconflict/mode-javascript"), { ssr: false });
+dynamic(import("ace-builds/src-noconflict/theme-dracula"), { ssr: false });
+dynamic(import("ace-builds/src-noconflict/theme-monokai"), { ssr: false });
+const DynamicAceEditor = dynamic(import("react-ace"), { ssr: false });
+import SidebarWithHeader from "./Sidebar";
+import dynamic from "next/dynamic";
+const DynamicReactJson = dynamic(import("react-json-view"), { ssr: false });
 
 interface Props {
   children: React.ReactNode;
 }
 export function Layout(props: Props) {
   return (
-    <Flex w="100vw" h="100vh" overflow="hidden">
-      <Flex
-        flexDir="column"
-        justify="space-between"
-        w={200}
-        p={8}
-        h="100vh"
-        bg={useColorModeValue('white', 'gray.900')}
-        borderRight="1px solid"
-        borderColor={useColorModeValue('gray.100', 'gray.900')}
-      >
-        <Stack>
-          <SidebarLink href="/">Home</SidebarLink>
-          <SidebarLink href="/admin">Admin</SidebarLink>
-        </Stack>
-        <Stack>
-          <Button variant="outline">Logout</Button>
-        </Stack>
-      </Flex>
-      <Box w="calc(100vw - 200px)" px={10} py={8} overflow="scroll">
-        {props.children}
+    <>
+      <SidebarWithHeader children={<MainLayout />} />
+    </>
+  );
+}
+
+export function MainLayout() {
+  return (
+    <SimpleGrid columns={2} spacing={3}>
+      <Box bg="transparent" height="40vh">
+        <DynamicAceEditor
+          style={{ height: "100%", width: "100%" }}
+          mode="html"
+          theme="monokai"
+          onChange={() => {}}
+          name="UNIQUE_ID_OF_DIV"
+          editorProps={{ $blockScrolling: true }}
+        />
       </Box>
-    </Flex>
-  );
-}
-
-interface SidebarLinkProps extends LinkProps {
-  href: string;
-  children: string;
-}
-
-function SidebarLink({ href, ...props }: SidebarLinkProps) {
-  const router = useRouter();
-  return (
-    <NextLink passHref href={href}>
-      <Link
-        {...props}
-        fontWeight="bold"
-        color={isActive(router.asPath, href) ? 'primary.500' : undefined}
-      >
-        {props.children}
-      </Link>
-    </NextLink>
-  );
-}
-
-function SidebarClientLink({ href, ...props }: SidebarLinkProps) {
-  const router = useRouter();
-  return (
-    <Link
-      {...props}
-      href={href}
-      fontWeight="bold"
-      color={isActive(router.asPath, href) ? 'primary.500' : undefined}
-    >
-      {props.children}
-    </Link>
+      <Box bg="tomato" height="40vh"></Box>
+      <Box bg="transparent" height="40vh">
+        <DynamicReactJson
+          src={{}}
+          theme={"ashes"}
+          onAdd={(add) => {}}
+          onEdit={(edit) => {}} //TODO: update the data
+        />
+      </Box>
+      <Box bg="tomato" height="40vh"></Box>
+    </SimpleGrid>
   );
 }

@@ -12,4 +12,8 @@ export class JinjaService {
   render = (templateText: string, data: any, fallback: string = '') => {
     return this.nunjucks.renderString(templateText, data);
   };
+
+  validate = (templateText: string): boolean => {
+    return this.nunjucks.renderString(templateText, {});
+  };
 }

@@ -22,27 +22,27 @@ if (!self.define) {
   const singleRequire = (uri, parentUri) => {
     uri = new URL(uri + ".js", parentUri).href;
     return registry[uri] || (
-
-      new Promise(resolve => {
-        if ("document" in self) {
-          const script = document.createElement("script");
-          script.src = uri;
-          script.onload = resolve;
-          document.head.appendChild(script);
-        } else {
-          nextDefineUri = uri;
-          importScripts(uri);
-          resolve();
-        }
-      })
-
-        .then(() => {
-          let promise = registry[uri];
-          if (!promise) {
-            throw new Error(`Module ${uri} didn’t register its module`);
+      
+        new Promise(resolve => {
+          if ("document" in self) {
+            const script = document.createElement("script");
+            script.src = uri;
+            script.onload = resolve;
+            document.head.appendChild(script);
+          } else {
+            nextDefineUri = uri;
+            importScripts(uri);
+            resolve();
           }
-          return promise;
         })
+      
+      .then(() => {
+        let promise = registry[uri];
+        if (!promise) {
+          throw new Error(`Module ${uri} didn’t register its module`);
+        }
+        return promise;
+      })
     );
   };
 
@@ -67,8 +67,7 @@ if (!self.define) {
     });
   };
 }
-define(['./workbox-9a8b0a38'], (function (workbox) {
-  'use strict';
+define(['./workbox-9a8b0a38'], (function (workbox) { 'use strict';
 
   /**
   * Welcome to your Workbox-powered service worker!

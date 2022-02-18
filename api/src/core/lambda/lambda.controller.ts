@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { Template, TemplateType, Prisma, Lambda } from '@prisma/client';
-import { RenderDto, RenderResponse } from 'src/dto/render';
-import { PrismaService } from 'src/prisma.service';
+import { RenderDto, RenderResponse } from '../dto/render';
+import { PrismaService } from '../../prisma.service';
 import { RunFeedback } from './interfaces';
 import { LambdaService } from './lambda.service';
 

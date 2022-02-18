@@ -1,11 +1,8 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { Prisma, Lambda, Transformer, TransformerType } from '@prisma/client';
-import { response } from 'express';
-import { sample } from 'rxjs';
-import { RenderDto, SampleData } from 'src/dto/render';
-import { RunFeedback } from 'src/lambda/interfaces';
-import { LambdaService } from 'src/lambda/lambda.service';
-import { PrismaService } from 'src/prisma.service';
+import { RenderDto, SampleData } from '../dto/render';
+import { RunFeedback } from 'src/core/lambda/interfaces';
+import { PrismaService } from '../../prisma.service';
 import { TransformerService } from './transformer.service';
 
 @Controller('transformer')

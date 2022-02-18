@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { Template, TemplateType, Prisma } from '@prisma/client';
-import { PrismaService } from '../prisma.service';
+import { PrismaService } from '../../prisma.service';
 import { TransformerService } from '../transformer/transformer.service';
 import { RenderDto, RenderResponse } from '../dto/render';
 import { JsTLService } from 'src/engines/jstl/jstl.service';
