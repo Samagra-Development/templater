@@ -18,6 +18,9 @@ dynamic(import("ace-builds/src-noconflict/theme-monokai"), { ssr: false });
 const DynamicAceEditor = dynamic(import("react-ace"), { ssr: false });
 import SidebarWithHeader from "./Sidebar";
 import dynamic from "next/dynamic";
+import HTMLRenderer from "./template-renderers/html-renderer";
+import TransformData from "./transform-data";
+import { Transformers } from "../lib/utility";
 const DynamicReactJson = dynamic(import("react-json-view"), { ssr: false });
 
 interface Props {
@@ -32,6 +35,22 @@ export function Layout(props: Props) {
 }
 
 export function MainLayout() {
+  const [template, setTemplate] = React.useState('');
+  const [JSONContent, setJSONContent] = React.useState({updated_src: {name:'hima'}} as any);
+  const [transformedData, setTransformedData] = React.useState(null as any);
+  const [selectedTransformer, setSelectedTransformer] = React.useState('' as any);
+  React.useEffect(()=>{
+    console.log(selectedTransformer);
+    
+    if(Transformers.hasTransformer(selectedTransformer)){
+      console.log(Transformers.transform(selectedTransformer, JSONContent.updated_src), '====');
+      
+      setTransformedData(Transformers.transform(selectedTransformer, JSONContent.updated_src));
+    }else{
+      setTransformedData(null);
+    }
+  }, [JSONContent, selectedTransformer]);
+  
   return (
     <SimpleGrid columns={2} spacing={3}>
       <Box bg="transparent" height="40vh">
@@ -39,21 +58,26 @@ export function MainLayout() {
           style={{ height: "100%", width: "100%" }}
           mode="html"
           theme="monokai"
-          onChange={() => {}}
+          value={template}
+          onChange={setTemplate}
           name="UNIQUE_ID_OF_DIV"
           editorProps={{ $blockScrolling: true }}
         />
       </Box>
-      <Box bg="tomato" height="40vh"></Box>
+      <Box height="40vh">
+        <HTMLRenderer template={template} content={transformedData || JSONContent?.updated_src || {}}/>
+      </Box>
       <Box bg="transparent" height="40vh">
         <DynamicReactJson
-          src={{}}
+          src={JSONContent?.updated_src || {}}
           theme={"ashes"}
           onAdd={(add) => {}}
-          onEdit={(edit) => {}} //TODO: update the data
+          onEdit={setJSONContent} //TODO: update the data
         />
       </Box>
-      <Box bg="tomato" height="40vh"></Box>
+      <Box height="40vh">
+        <TransformData selectedTransformer={selectedTransformer} onTransformerChange={setSelectedTransformer} content={JSONContent?.updated_src || {}}/>
+      </Box>
     </SimpleGrid>
   );
 }
