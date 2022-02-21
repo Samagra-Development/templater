@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { Select } from '@chakra-ui/react'
-
+import ReactJson from 'react-json-view'
+import dynamic from 'next/dynamic';
+// const DynamicReactJson = dynamic(import("react-json-view"), { ssr: false });
 interface Props {
     content: any,
     selectedTransformer: string,
@@ -13,6 +15,7 @@ const TransformData = (props: Props)=>{
             <option value=''>Remove Transformer</option>
             <option value={'capitalize'}>Capitalize</option>
         </Select>
+
     </div>;
 }
 export default TransformData;

@@ -77,6 +77,15 @@ export function MainLayout() {
       </Box>
       <Box height="40vh">
         <TransformData selectedTransformer={selectedTransformer} onTransformerChange={setSelectedTransformer} content={JSONContent?.updated_src || {}}/>
+        <hr/>
+        <hr/>
+        {
+                transformedData &&  
+                <DynamicReactJson
+                  src={transformedData}
+                  theme={"ashes"}
+                />
+        }
       </Box>
     </SimpleGrid>
   );
