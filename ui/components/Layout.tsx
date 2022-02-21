@@ -40,11 +40,7 @@ export function MainLayout() {
   const [transformedData, setTransformedData] = React.useState(null as any);
   const [selectedTransformer, setSelectedTransformer] = React.useState('' as any);
   React.useEffect(()=>{
-    console.log(selectedTransformer);
-    
     if(Transformers.hasTransformer(selectedTransformer)){
-      console.log(Transformers.transform(selectedTransformer, JSONContent.updated_src), '====');
-      
       setTransformedData(Transformers.transform(selectedTransformer, JSONContent.updated_src));
     }else{
       setTransformedData(null);
@@ -78,13 +74,12 @@ export function MainLayout() {
       <Box height="40vh">
         <TransformData selectedTransformer={selectedTransformer} onTransformerChange={setSelectedTransformer} content={JSONContent?.updated_src || {}}/>
         <hr/>
-        <hr/>
         {
-                transformedData &&  
-                <DynamicReactJson
-                  src={transformedData}
-                  theme={"ashes"}
-                />
+          transformedData &&  
+          <DynamicReactJson
+            src={transformedData}
+            theme={"ashes"}
+          />
         }
       </Box>
     </SimpleGrid>

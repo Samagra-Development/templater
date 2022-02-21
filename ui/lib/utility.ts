@@ -26,13 +26,15 @@ export class Transformers {
         capitalize
     };
     static hasTransformer (type: string){
+        // TODO : Axios call to fetch transformer based on Type as DID
         return Transformers.TRANSFORMERS[type]
     }
     static transform(type: string, content: any){
-        if(!content ||  !type || !Transformers.hasTransformer(type)){
+        const _transformer = Transformers.hasTransformer(type);
+        if(!content ||  !type || !_transformer){
             return content;
         }
         let result = JSON.parse(JSON.stringify(content));
-        return Transformers.TRANSFORMERS[type](result);
+        return _transformer(result);
     }
 }
