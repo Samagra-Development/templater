@@ -22,6 +22,10 @@ import {
   MenuDivider,
   MenuItem,
   MenuList,
+  Wrap,
+  Center,
+  StackDivider,
+  Spacer,
 } from "@chakra-ui/react";
 import {
   FiHome,
@@ -98,11 +102,12 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       h="full"
       {...rest}
     >
-      <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
+      <Flex h="12" alignItems="center" mx="8" justifyContent="space-between">
         <HStack>
           <Box boxSize="m">
-            <Image src="./images/logo.png" />
+            <Image m="1" src="./logo.png" />
           </Box>
+          <Spacer />
           <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
             Templater
           </Text>
@@ -112,11 +117,25 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
           />
         </HStack>
       </Flex>
-      {LinkItems.map((link) => (
-        <NavItem key={link.name} icon={link.icon}>
-          {link.name}
-        </NavItem>
-      ))}
+      <HStack h="full" w="full" bg="green.100">
+        <VStack w="5vh" h="full" bg="tomato" spacing={4}>
+          {LinkItems.map((link) => (
+            <Link
+              href="#"
+              style={{ textDecoration: "none" }}
+              _focus={{ boxShadow: "none" }}
+            >
+              <Icon
+                fontSize="30"
+                _groupHover={{
+                  color: "white",
+                }}
+                as={link.icon}
+              />
+            </Link>
+          ))}
+        </VStack>
+      </HStack>
     </Box>
   );
 };
@@ -169,7 +188,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
     <Flex
       ml={{ base: 0, md: 60 }}
       px={{ base: 4, md: 4 }}
-      height="20"
+      height="12"
       alignItems="center"
       bg={useColorModeValue("white", "gray.900")}
       borderBottomWidth="1px"
