@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactElement, ReactNode } from "react";
 import {
   IconButton,
   Avatar,
@@ -25,6 +25,7 @@ import {
   Wrap,
   Center,
   StackDivider,
+  Heading,
   Spacer,
 } from "@chakra-ui/react";
 import {
@@ -32,24 +33,41 @@ import {
   FiTrendingUp,
   FiCompass,
   FiStar,
+  FiUser,
   FiSettings,
+  FiActivity,
+  FiCode,
   FiMenu,
   FiBell,
+  FiBookOpen,
   FiChevronDown,
 } from "react-icons/fi";
 import { IconType } from "react-icons";
 import { ReactText } from "react";
+import { Link as RouterLink } from "react-router-dom";
 
 interface LinkItemProps {
   name: string;
-  icon: IconType;
+  icon: ReactElement;
+  route: string;
 }
 const LinkItems: Array<LinkItemProps> = [
-  { name: "Home", icon: FiHome },
-  { name: "Trending", icon: FiTrendingUp },
-  { name: "Explore", icon: FiCompass },
-  { name: "Favourites", icon: FiStar },
-  { name: "Settings", icon: FiSettings },
+  { name: "Home", icon: <FiHome />, route: "/home" },
+  { name: "Transformer", icon: <FiActivity />, route: "/transformer" },
+  { name: "Lambda", icon: <FiCode />, route: "/lambda" },
+  { name: "Account", icon: <FiUser />, route: "account" },
+  { name: "Settings", icon: <FiSettings />, route: "settings" },
+  { name: "Docs", icon: <FiBookOpen />, route: "docs" },
+];
+
+interface Flavor {
+  name: string;
+}
+
+const Flavors: Array<Flavor> = [
+  { name: "JSTL" },
+  { name: "JINJA" },
+  { name: "EJS" },
 ];
 
 export default function SidebarWithHeader({
@@ -118,22 +136,35 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         </HStack>
       </Flex>
       <HStack h="full" w="full" bg="green.100">
-        <VStack w="5vh" h="full" bg="tomato" spacing={4}>
+        <VStack w="5vh" h="full" bg="tomato" spacing={2}>
           {LinkItems.map((link) => (
             <Link
-              href="#"
+              as={RouterLink}
+              to={link.route}
               style={{ textDecoration: "none" }}
               _focus={{ boxShadow: "none" }}
             >
-              <Icon
-                fontSize="30"
+              <IconButton
+                isRound={true}
+                size="sm"
+                aria-label={`${link.name}`}
                 _groupHover={{
                   color: "white",
                 }}
-                as={link.icon}
+                icon={link.icon}
               />
             </Link>
           ))}
+        </VStack>
+        <VStack w="full" h="full" bg="red.100" spacing={4}>
+          <Box w="full" textAlign={["left"]}>
+            <Heading as="h4" size="sm" isTruncated>
+              FLAVOR
+            </Heading>
+            {Flavors.map((flavor) => (
+              <Text>{flavor.name}</Text>
+            ))}
+          </Box>
         </VStack>
       </HStack>
     </Box>

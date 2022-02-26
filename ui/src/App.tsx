@@ -20,6 +20,7 @@ import "ace-builds/src-noconflict/mode-html";
 import "ace-builds/src-noconflict/theme-github";
 import "ace-builds/src-noconflict/theme-monokai";
 import JSONPretty from "react-json-pretty";
+import { Route, Routes } from "react-router";
 
 export function MainLayout() {
   return (
@@ -50,10 +51,19 @@ export function MainLayout() {
   );
 }
 
-export const App = () => (
-  <ChakraProvider theme={theme}>
+export function Home() {
+  return (
     <Box textAlign="center" fontSize="xl">
       <SidebarWithHeader children={<MainLayout />} />
     </Box>
+  );
+}
+
+export const App = () => (
+  <ChakraProvider theme={theme}>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="home" element={<Home />} />
+    </Routes>
   </ChakraProvider>
 );
