@@ -1,3 +1,11 @@
 {
-  "cSpell.words": ["nestjs"]
+  "cSpell.words": [
+    "JSTL",
+    "monokai",
+    "nestjs",
+    "noconflict",
+    "Templater"
+  ],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true
 }
