@@ -2,7 +2,6 @@ import {
     Avatar,
     Box,
     BoxProps,
-    Center,
     CloseButton,
     Divider,
     Drawer,
@@ -135,8 +134,6 @@ const SidebarContent = ({
     setLanguage,
     ...rest
 }: SidebarProps) => {
-    console.log({ flavor, setFlavor });
-    console.log('test', setFlavor(Flavors[0]));
     return (
         <Box
             transition="3s ease"
@@ -332,7 +329,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
                                     spacing="1px"
                                     ml="2"
                                 >
-                                    <Text fontSize="sm">Justina Clark</Text>
+                                    <Text fontSize="sm">Chaks</Text>
                                     <Text fontSize="xs" color="gray.600">
                                         Admin
                                     </Text>
