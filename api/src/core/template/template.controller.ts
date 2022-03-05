@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { Template, TemplateType, Prisma } from '@prisma/client';
 import { PrismaService } from '../../prisma.service';
 import { TransformerService } from '../transformer/transformer.service';
-import { RenderDto, RenderResponse } from '../dto/render';
+import { RenderDto, RenderDtoTest, RenderResponse } from '../dto/render';
 import { JsTLService } from 'src/engines/jstl/jstl.service';
 import { TemplateService } from './template.service';
 import { JinjaService } from 'src/engines/jinja/jinja.service';
@@ -61,6 +61,41 @@ export class TemplateController {
       data: renderDto.data,
       template: 'test',
       meta: template.meta,
+    };
+  }
+
+  @Post('/process/test')
+  async renderTest(@Body() data: RenderDtoTest): Promise<RenderResponse> {
+    let processed;
+    console.log(data.sampleData);
+
+    let transformedData = JSON.parse(data.sampleData);
+    // for (const transformer of template.transformers) {
+    //   transformedData = await this.transformerService.process(
+    //     transformer.transformer,
+    //     transformedData,
+    //     transformer.path,
+    //   );
+    // }
+    switch (data.type) {
+      case TemplateType.JINJA:
+        processed = this.jinjaService.render(data.body, transformedData);
+
+      case TemplateType.JS_TEMPLATE_LITERALS:
+        processed = this.jstlService.render(data.body, transformedData);
+        break;
+
+      case TemplateType.EJS:
+        processed = this.ejsService.render(data.body, transformedData);
+        break;
+      default:
+        throw 'Templates without template types not allowed';
+    }
+    return {
+      processed,
+      templateType: TemplateType.JS_TEMPLATE_LITERALS,
+      data: data.sampleData,
+      template: 'test',
     };
   }
 

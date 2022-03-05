@@ -6,6 +6,12 @@ export interface RenderDto {
   path?: string;
 }
 
+export interface RenderDtoTest {
+  sampleData: any;
+  body: string;
+  type: TemplateType;
+}
+
 export interface RenderResponse {
   processed: string;
   templateType: TemplateType;

@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class JsTLService {
   interpolate = (template, variables, fallback) => {
+    console.log({ template, variables, fallback });
     const regex = /\${[^{]+}/g;
     return template.replace(regex, (match) => {
       const path = match.slice(2, -1).trim();
