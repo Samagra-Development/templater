@@ -1,4 +1,5 @@
 const CracoSwcPlugin = require('craco-swc');
+const cracoServiceWorkerConfig = require("./cracoServiceWorkerConfig");
 
 module.exports = {
     plugins: [
