@@ -67,9 +67,12 @@ export class TemplateController {
   @Post('/process/test')
   async renderTest(@Body() data: RenderDtoTest): Promise<RenderResponse> {
     let processed;
-    console.log(data.sampleData);
-
-    let transformedData = JSON.parse(data.sampleData);
+    let transformedData;
+    try {
+      transformedData = JSON.parse(data.sampleData);
+    } catch (e) {
+      transformedData = data.sampleData;
+    }
     // for (const transformer of template.transformers) {
     //   transformedData = await this.transformerService.process(
     //     transformer.transformer,
@@ -90,6 +93,49 @@ export class TemplateController {
         break;
       default:
         throw 'Templates without template types not allowed';
+    }
+    return {
+      processed,
+      templateType: TemplateType.JS_TEMPLATE_LITERALS,
+      data: data.sampleData,
+      template: 'test',
+    };
+  }
+
+  @Post('/process/testMany')
+  async renderTestMany(@Body() data: RenderDtoTest): Promise<RenderResponse> {
+    let processed = [];
+    let transformedData;
+    try {
+      transformedData = JSON.parse(data.sampleData);
+    } catch (e) {
+      transformedData = data.sampleData;
+    }
+    for (let i = 0; i < transformedData.length; i++) {
+      switch (data.type) {
+        case TemplateType.JINJA:
+          processed.push({
+            __index: transformedData[i].__index,
+            body: this.jinjaService.render(data.body, transformedData[i]),
+          });
+
+        case TemplateType.JS_TEMPLATE_LITERALS:
+          processed.push({
+            __index: transformedData[i].__index,
+            body: this.jstlService.render(data.body, transformedData[i]),
+          });
+
+          break;
+
+        case TemplateType.EJS:
+          processed.push({
+            __index: transformedData[i].__index,
+            body: this.ejsService.render(data.body, transformedData[i]),
+          });
+          break;
+        default:
+          throw 'Templates without template types not allowed';
+      }
     }
     return {
       processed,

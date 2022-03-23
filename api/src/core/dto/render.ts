@@ -13,7 +13,7 @@ export interface RenderDtoTest {
 }
 
 export interface RenderResponse {
-  processed: string;
+  processed: string | string[];
   templateType: TemplateType;
   data: any;
   template: string;
