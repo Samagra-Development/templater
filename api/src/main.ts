@@ -1,12 +1,15 @@
 import { AppModule } from './app.module';
+import { RPCModule } from './rpc.module';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { PrismaService } from './prisma.service';
 import { stringify, parse } from 'json-bigint';
+import { Transport, MicroserviceOptions } from '@nestjs/microservices';
 import {
   FastifyAdapter,
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
+import { join } from 'path';
 
 // Handing BigInt
 JSON.stringify = stringify;
@@ -30,9 +33,27 @@ async function bootstrap() {
 
   const prismaService: PrismaService = app.get(PrismaService);
   prismaService.enableShutdownHooks(app);
-
   app.enableCors();
 
+  console.log(join(__dirname, 'proto/lambda.proto'));
+  const grpcMicroservice =
+    await NestFactory.createMicroservice<MicroserviceOptions>(AppModule, {
+      transport: Transport.GRPC,
+      options: {
+        url: '0.0.0.0:5055',
+        package: 'lambda',
+        protoPath: join(__dirname, 'proto/lambda.proto'),
+        loader: {
+          keepCase: true,
+          enums: String,
+          oneofs: true,
+          arrays: true,
+        },
+      },
+    });
+
+  app.connectMicroservice(grpcMicroservice);
+  await app.startAllMicroservices();
   await app.listen(3000, '0.0.0.0');
 }
 bootstrap();

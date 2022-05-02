@@ -1,0 +1,22 @@
+syntax = "proto3";
+import "google/protobuf/struct.proto";
+
+package lambda;
+
+service LambdaService {
+  rpc Process(Lambda) returns (LambdaResponse) {}
+}
+
+message Lambda {
+    enum LANGUAGE {
+        JAVASCRIPT = 0;
+        TYPESCRIPT = 1;
+    }
+    string body = 1;
+    LANGUAGE language = 2;
+    google.protobuf.Struct testData = 3;
+}
+
+message LambdaResponse {
+    google.protobuf.Struct data = 2;
+}

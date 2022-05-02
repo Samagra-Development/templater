@@ -11,25 +11,11 @@ import { TransformerController } from './core/transformer/transformer.controller
 import { TemplateController } from './core/template/template.controller';
 import { JinjaService } from './engines/jinja/jinja.service';
 import { EjsService } from './engines/ejs/ejs.service';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [],
-  controllers: [
-    LambdaController,
-    TransformerController,
-    TemplateController,
-    LambdaService,
-  ],
-  providers: [
-    AppService,
-    PrismaService,
-    JsTLService,
-    TemplateService,
-    AuditService,
-    LambdaService,
-    TransformerService,
-    JinjaService,
-    EjsService,
-  ],
+  controllers: [AppController],
+  providers: [],
 })
-export class AppModule {}
+export class RPCModule {}

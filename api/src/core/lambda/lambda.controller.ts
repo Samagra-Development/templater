@@ -2,8 +2,9 @@ import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { Template, TemplateType, Prisma, Lambda } from '@prisma/client';
 import { RenderDto, RenderResponse } from '../dto/render';
 import { PrismaService } from '../../prisma.service';
-import { RunFeedback } from './interfaces';
+import { LambdaJustBody, RunFeedback } from './interfaces';
 import { LambdaService } from './lambda.service';
+import { GrpcMethod } from '@nestjs/microservices';
 
 @Controller('lambda')
 export class LambdaController {

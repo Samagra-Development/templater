@@ -1,12 +1,14 @@
-import { Injectable } from '@nestjs/common';
+import { Controller, Injectable } from '@nestjs/common';
 import { Lambda, Language, Prisma } from '@prisma/client';
-import { RunFeedback } from './interfaces';
+import { LambdaJustBody, RunFeedback } from './interfaces';
 import { NodeVM, VM } from 'vm2';
 import { performance } from 'perf_hooks';
 import ts = require('typescript');
 import { PrismaService } from '../../prisma.service';
+import { GrpcMethod } from '@nestjs/microservices';
 
-@Injectable()
+// @Injectable()
+@Controller()
 export class LambdaService {
   vm: NodeVM;
   constructor(private prisma: PrismaService) {
@@ -26,7 +28,19 @@ export class LambdaService {
     return await this.prisma.lambda.findUnique({ where: { id: Number(id) } });
   }
 
-  process(lambda: Lambda | Prisma.LambdaCreateInput, data: any): RunFeedback {
+  @GrpcMethod('LambdaService', 'Process')
+  async processRPC(lambda: {
+    body: string;
+    language: Language;
+    testData: any;
+  }): Promise<RunFeedback> {
+    return this.process(lambda, lambda.testData);
+  }
+
+  process(
+    lambda: Lambda | Prisma.LambdaCreateInput | LambdaJustBody,
+    data: any,
+  ): RunFeedback {
     // Regex to verify function(data) signature
     const regex = /^function\s*\(([^)]*)\)\s*\{/;
     const match = regex.exec(lambda.body);

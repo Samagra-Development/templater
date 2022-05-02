@@ -1,0 +1,37 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+
+package app;
+
+// Declare a service for each controller you have
+service StudentController {
+  // Declare an rpc for each method that is called via gRPC
+  rpc GetStudent(StudentId) returns (StudentList){}
+  rpc CreateStudent(StudentBody) returns (StudentList){}
+  rpc RemoveStudent(StudentId) returns (StudentList){}
+  rpc UpdateStudent(UpdateStudent) returns (StudentList){}
+}
+
+// Declare the types used above
+message StudentList {
+  string id = 1;
+  string name =2;
+  int32 age = 3;
+}
+  
+message StudentId {
+	string id = 1;
+}
+
+message StudentBody{
+	string id =  1;
+	string name = 2;
+	int32 age = 3;
+}
+
+message UpdateStudent{
+  string id = 1;
+  string name = 2;
+  int32 age = 3;
+}
+
