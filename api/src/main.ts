@@ -35,24 +35,22 @@ async function bootstrap() {
   prismaService.enableShutdownHooks(app);
   app.enableCors();
 
-  console.log(join(__dirname, 'proto/lambda.proto'));
-  const grpcMicroservice =
-    await NestFactory.createMicroservice<MicroserviceOptions>(AppModule, {
-      transport: Transport.GRPC,
-      options: {
-        url: '0.0.0.0:5055',
-        package: 'lambda',
-        protoPath: join(__dirname, 'proto/lambda.proto'),
-        loader: {
-          keepCase: true,
-          enums: String,
-          oneofs: true,
-          arrays: true,
-        },
+  app.connectMicroservice<MicroserviceOptions>({
+    transport: Transport.GRPC,
+    options: {
+      url: '0.0.0.0:50052',
+      package: 'lambda',
+      protoPath: join(__dirname, 'proto/lambda.proto'),
+      loader: {
+        keepCase: true,
+        enums: String,
+        oneofs: true,
+        arrays: true,
+        objects: true,
       },
-    });
+    },
+  });
 
-  app.connectMicroservice(grpcMicroservice);
   await app.startAllMicroservices();
   await app.listen(3000, '0.0.0.0');
 }

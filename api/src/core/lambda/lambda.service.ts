@@ -6,18 +6,14 @@ import { performance } from 'perf_hooks';
 import ts = require('typescript');
 import { PrismaService } from '../../prisma.service';
 import { GrpcMethod } from '@nestjs/microservices';
+import { VMService } from './vm.service';
 
 // @Injectable()
 @Controller()
 export class LambdaService {
   vm: NodeVM;
-  constructor(private prisma: PrismaService) {
-    this.vm = new NodeVM({
-      console: 'redirect',
-      require: {
-        external: false,
-      },
-    });
+  constructor(private prisma: PrismaService, private vmService: VMService) {
+    this.vm = vmService.vm;
   }
 
   async getLambdaFromDID(did: string): Promise<Lambda> {
@@ -32,9 +28,14 @@ export class LambdaService {
   async processRPC(lambda: {
     body: string;
     language: Language;
-    testData: any;
-  }): Promise<RunFeedback> {
-    return this.process(lambda, lambda.testData);
+    testData: string;
+  }): Promise<any> {
+    const data = await this.process(lambda, JSON.parse(lambda.testData))
+      .response;
+    console.log(data);
+    return {
+      result: data,
+    };
   }
 
   process(

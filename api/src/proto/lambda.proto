@@ -14,9 +14,9 @@ message Lambda {
     }
     string body = 1;
     LANGUAGE language = 2;
-    google.protobuf.Struct testData = 3;
+    string testData = 3; // JSON stringified object
 }
 
 message LambdaResponse {
-    google.protobuf.Struct data = 2;
+    string result = 1;
 }

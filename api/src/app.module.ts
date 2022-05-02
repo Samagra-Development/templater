@@ -11,15 +11,18 @@ import { TransformerController } from './core/transformer/transformer.controller
 import { TemplateController } from './core/template/template.controller';
 import { JinjaService } from './engines/jinja/jinja.service';
 import { EjsService } from './engines/ejs/ejs.service';
+import { VMService } from './core/lambda/vm.service';
+import { SingletonServiceModule } from './singletonService.module';
 
 @Module({
-  imports: [],
+  imports: [SingletonServiceModule],
   controllers: [
     LambdaController,
     TransformerController,
     TemplateController,
     LambdaService,
   ],
+  exports: [VMService],
   providers: [
     AppService,
     PrismaService,
@@ -30,6 +33,7 @@ import { EjsService } from './engines/ejs/ejs.service';
     TransformerService,
     JinjaService,
     EjsService,
+    VMService,
   ],
 })
 export class AppModule {}

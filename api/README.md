@@ -81,3 +81,8 @@ $ yarn install
 2. Migrate -`prisma migrate dev`
 3. Generating docs when you are done - `npx @compodoc/compodoc -p tsconfig.json -s`
 4. Generating Swagger docs - `
+
+## gRPC
+
+Postman can send gRPC requests now. This can be used to test the gRPC server. It doesn't allow to share though.
+![grpc.png](./images/grpc.png)
