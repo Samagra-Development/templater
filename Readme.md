@@ -1,5 +1,5 @@
 [![](https://img.shields.io/github/forks/Samarth-HP/templater?style=social)](http://makeapullrequest.com)
-[![](https://img.shields.io/github/repo-size/Samarth-HP/templater)](http://makeapullrequest.com)
+[![](https://img.shields.io/github/release-date/Samarth-HP/templater)](http://makeapullrequest.com)
 [![](https://img.shields.io/github/issues/Samarth-HP/templater)](http://makeapullrequest.com)
 [![](https://img.shields.io/github/issues/Samarth-HP/templater/good-first)](http://makeapullrequest.com)
 [![](https://img.shields.io/github/issues/Samarth-HP/templater)](http://makeapullrequest.com)
@@ -38,7 +38,7 @@ Templater is a REST API service that can store, manage and render templates. A T
 
 ### ❓FAQs
 
-### Contributors
+## Contributors
 
 <a href="https://github.com/Samarth-HP/templater/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=Samarth-HP/templater" />
