@@ -14,18 +14,18 @@ Templater is a REST API service that can store, manage and render templates. A T
 - [FAQs](#faqs)
 
 
-###  Objectives
+###  🏹 Objectives
 
-###  Architecture
+###  👷 Architecture
 
-###  Core Features
+###  💻 Core Features
 
-###  Use cases
+###  🚻 Use cases
 
 ###  API Overview
 
 ### Schema Overview
 
-### Contribution Guidelines
+### ℹ Contribution Guidelines
 
-### FAQs
+### ❓FAQs
