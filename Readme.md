@@ -1,6 +1,6 @@
 [![](https://img.shields.io/github/forks/Samarth-HP/templater?style=social)](http://makeapullrequest.com)
 [![](https://img.shields.io/github/release-date/Samarth-HP/templater)](http://makeapullrequest.com)
-[![](https://img.shields.io/github/issues/Samarth-HP/templater)](http://makeapullrequest.com)
+[![](https://img.shields.io/github/languages/count/Samarth-HP/templater)](http://makeapullrequest.com)
 [![](https://img.shields.io/github/issues/Samarth-HP/templater/good-first)](http://makeapullrequest.com)
 [![](https://img.shields.io/github/issues/Samarth-HP/templater)](http://makeapullrequest.com)
 
