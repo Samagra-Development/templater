@@ -1,4 +1,9 @@
 [![](https://img.shields.io/github/forks/Samarth-HP/templater?style=social)](http://makeapullrequest.com)
+[![](https://img.shields.io/github/repo-size/Samarth-HP/templater)](http://makeapullrequest.com)
+[![](https://img.shields.io/github/issues/Samarth-HP/templater)](http://makeapullrequest.com)
+[![](https://img.shields.io/github/issues/Samarth-HP/templater/good-first)](http://makeapullrequest.com)
+[![](https://img.shields.io/github/issues/Samarth-HP/templater)](http://makeapullrequest.com)
+
 
 
 ## 📃 Templater
