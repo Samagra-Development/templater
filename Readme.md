@@ -37,3 +37,9 @@ Templater is a REST API service that can store, manage and render templates. A T
 ### ℹ Contribution Guidelines
 
 ### ❓FAQs
+
+### Contributors
+
+<a href="https://github.com/Samarth-HP/templater/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Samarth-HP/templater" />
+</a>
