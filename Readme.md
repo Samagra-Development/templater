@@ -144,6 +144,10 @@ git rebase master
 # if you need to update the existing pull request, you should do a 'force' push
 git push origin HEAD -f
 ```
+### Dev Setup
+Start the database and gql server - ```docker-compose up -d templaterdb gql```
+Migrate -```prisma migrate dev```
+Generating docs when you are done - ```npx @compodoc/compodoc -p tsconfig.json -s```
 
 ### ❓FAQs
 
