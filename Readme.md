@@ -1,4 +1,4 @@
-[![Pull Requests Welcome](https://img.shields.io/github/forks/Samarth-HP/templater?style=social)](http://makeapullrequest.com)
+[![](https://img.shields.io/github/forks/Samarth-HP/templater?style=social)](http://makeapullrequest.com)
 
 
 ## 📃 Templater
