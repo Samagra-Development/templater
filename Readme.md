@@ -22,9 +22,9 @@ Templater is a REST API service that can store, manage and render templates. A T
 
 ###  🚻 Use cases
 
-###  API Overview
+### 🪜 API Overview
 
-### Schema Overview
+### 🔭 Schema Overview
 
 ### ℹ Contribution Guidelines
 
