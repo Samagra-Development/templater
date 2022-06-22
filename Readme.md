@@ -31,7 +31,7 @@ The objectives of templater are as follows:
 - Allow rendering of the templates. Rendering is the output generated after filling the data. It is a combination of Data + Template. A - person inputs some data to the template, Whatever output is achieved is considered to be part of the rendering procedure
 
 ###  👷 Architecture
-
+//text to be added here
 
 
 ###  💻 Core Features
@@ -93,10 +93,13 @@ Here, the integer 1 will trigger the cloud function "cloudfunctions.googleapis.c
 
 
 ###  🚻 Use cases
+// content to be added
 
 ### 🪜 API Overview
+//content to be added
 
 ### 🔭 Schema Overview
+//content to be added
 
 ### ℹ Contribution Guidelines
 If you are a new developer looking to contribute something to Templater, please take a look and see if there's anything that you'd like to work on in the [issue tracker](https://github.com/Samarth-HP/templater/issues).
@@ -150,6 +153,7 @@ Migrate -```prisma migrate dev```
 Generating docs when you are done - ```npx @compodoc/compodoc -p tsconfig.json -s```
 
 ### ❓FAQs
+//content to be added
 
 ## Contributors
 
