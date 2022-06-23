@@ -43,7 +43,7 @@ The Transformer is one of the building blocks of Templater API. It helps us in D
 1. OPTIONS
 This transformer replaces the target item with the specified value. These two items are stored in the form of key-value pairs. The key parameter contains the target item while the value paramater consists of new item which will replace the target item. For example:
 
-```json
+```js
 {
     "type": "OPTIONS",
     "meta" : {
@@ -66,7 +66,7 @@ In the above case, Whenever the text “Original Text” is hit, It will be imme
 2. Cloud Functions
 For a particular key, this transformer can trigger a specific cloud function. Whenever a value is found that matches the key parameter, this Transformer will invoke a cloud function that is specified in the value parameter For example:
 
-```json
+```js
 {
     path: "data.username",
     type: "options", //enum => options, function
