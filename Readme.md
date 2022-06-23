@@ -43,7 +43,7 @@ The Transformer is one of the building blocks of Templater API. It helps us in D
 1. OPTIONS
 This transformer replaces the target item with the specified value. These two items are stored in the form of key-value pairs. The key parameter contains the target item while the value paramater consists of new item which will replace the target item. For example:
 
-```
+```json
 {
     "type": "OPTIONS",
     "meta" : {
