@@ -84,7 +84,6 @@ For a particular key, this transformer can trigger a specific cloud function. Wh
     },
     sampleData: {}
 }
-
 ```
 Here, the integer 1 will trigger the cloud function "cloudfunctions.googleapis.com". Similarly, the integer 2 will trigger another cloud function "cloudbuild.googleapis.com".
 
