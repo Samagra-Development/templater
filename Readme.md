@@ -66,7 +66,7 @@ In the above case, Whenever the text “Original Text” is hit, It will be imme
 2. Cloud Functions
 For a particular key, this transformer can trigger a specific cloud function. Whenever a value is found that matches the key parameter, this Transformer will invoke a cloud function that is specified in the value parameter For example:
 
-```
+```json
 {
     path: "data.username",
     type: "options", //enum => options, function
@@ -117,18 +117,18 @@ If it's unclear exactly what needs to be done, or how to do it, please don't hes
 1. Fork the Templater repository.
 
 2. Now let's set up our local repository
-```
+```shell
 git clone https://github.com/username/templater-docs.git
 ```
 3. Next step is to establish an upstream connection with the base repository
-```
+```shell
 cd templater
 git remote add upstream https://github.com/Samarth-HP/templater.git
 ```
 
 ### Making a new pull request
 Now if want to make a new change to the code base, we create a new 'feature branch' based off the latest version of the main branch:
-```
+```shell
 git checkout master
 git pull upstream master
 git checkout -b my-feature-branch 
@@ -138,7 +138,7 @@ git push origin HEAD
 ### Dealing with merge conflicts
 If changes are made to the Templater repository that conflict with the changes in your pull request in-between creating the feature branch and your changes getting merged into the master repository, it may be necessary to rebase your code:
 
-```
+```shell
 git checkout master
 git pull upstream master
 git checkout my-feature-branch # or just "git checkout -" 
