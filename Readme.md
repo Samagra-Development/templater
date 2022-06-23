@@ -147,18 +147,19 @@ git rebase master
 git push origin HEAD -f
 ```
 ### Dev Setup
+
 Start the database and gql server - 
-```shell 
+``` 
 docker-compose up -d templaterdb gql
 ```
 
 Migrate -
-```shell
+```
 prisma migrate dev
 ```
 
 Generating docs when you are done - 
-```shell
+```
 npx @compodoc/compodoc -p tsconfig.json -s
 ```
 
