@@ -10,7 +10,7 @@
 
 Templater is a REST API service that can store, manage and render templates. A Template is like a well-defined format in which data can be entered. The output generated is according to the format defined in the template. Templater helps us simplify and enhance this process by providing multiple services such as Data transformation, Lambda API, User interface, Support for multiple engines, etc. 
 
-### 📖 Table of Contents 
+## 📖 Table of Contents 
 
 - [Objectives](#🏹-objectives)
 - [Architecture](#👷-architecture)
@@ -22,7 +22,7 @@ Templater is a REST API service that can store, manage and render templates. A T
 - [FAQs](#❓faqs)
 
 
-###  🏹 Objectives
+##  🏹 Objectives
 
 The objectives of templater are as follows:
 
@@ -30,11 +30,10 @@ The objectives of templater are as follows:
 - Provide CRUD operations on templates with the help of our API
 - Allow rendering of the templates. Rendering is the output generated after filling the data. It is a combination of Data + Template. A - person inputs some data to the template, Whatever output is achieved is considered to be part of the rendering procedure
 
-###  👷 Architecture
-//text to be added here
+##  👷 Architecture
+>This section is under construction
 
-
-###  💻 Core Features
+##  💻 Core Features
 
 ### Transformer
 
@@ -88,19 +87,18 @@ For a particular key, this transformer can trigger a specific cloud function. Wh
 Here, the integer 1 will trigger the cloud function "cloudfunctions.googleapis.com". Similarly, the integer 2 will trigger another cloud function "cloudbuild.googleapis.com".
 
 ### Lambda API
-//text to be added here
+>This section is under construction
 
+##  🚻 Use cases
+>This section is under construction
 
-###  🚻 Use cases
-// content to be added
+## 🪜 API Overview
+>This section is under construction
 
-### 🪜 API Overview
-//content to be added
+## 🔭 Schema Overview
+>This section is under construction
 
-### 🔭 Schema Overview
-//content to be added
-
-### ℹ Contribution Guidelines
+## ℹ Contribution Guidelines
 If you are a new developer looking to contribute something to Templater, please take a look and see if there's anything that you'd like to work on in the [issue tracker](https://github.com/Samarth-HP/templater/issues).
 
 The "Good First Issue" label has been added to any tasks that seem like a good way to get started working with the codebase.
@@ -163,8 +161,15 @@ Generating docs when you are done -
 npx @compodoc/compodoc -p tsconfig.json -s
 ```
 
-### ❓FAQs
-//content to be added
+### Development Environment
+
+Click the button below to start working in a new ready to code development environment
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#<your-project-url>)
+
+
+## ❓FAQs
+>This section is under construction
 
 ## Contributors
 
