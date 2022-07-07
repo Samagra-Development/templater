@@ -45,7 +45,7 @@ Some Popular Examples of Templating Engines include:
 - [Pug](https://pugjs.org/)
 - [Mustache](https://mustache.github.io/)
 - [HandlebarsJS](https://handlebarsjs.com/)
-- [Jinja2](https://jinja.palletsprojects.com/en/2.11.x/templates/) and [Nunjucks](https://mozilla.github.io/nunjucks/)
+- [Jinja2](https://jinja.palletsprojects.com/en/2.11.x/templates/) & [Nunjucks](https://mozilla.github.io/nunjucks/)
 - [Blade](https://laravel.com/docs/9.x/blade)
 
 ## 📖 Table of Contents 
@@ -69,7 +69,10 @@ The objectives of templater are as follows:
 - Allow rendering of the templates. Rendering is the output generated after filling the data. It is a combination of Data + Template. A - person inputs some data to the template, Whatever output is achieved is considered to be part of the rendering procedure
 
 ##  👷 Architecture
->This section is under construction
+The Templater Architecture is divide into several components.
+
+1. Template API service - rest+gPRC
+
 
 ##  💻 Core Features
 
