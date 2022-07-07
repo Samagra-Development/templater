@@ -71,7 +71,7 @@ The objectives of templater are as follows:
 ##  👷 Architecture
 The Templater Architecture is divide into several components.
 
-1. Template API service - rest+gPRC
+>This section is under construction
 
 
 ##  💻 Core Features
