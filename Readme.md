@@ -133,6 +133,7 @@ Here, the integer 1 will trigger the cloud function "cloudfunctions.googleapis.c
 >This section is under construction
 
 ### Playground
+>This section is under construction
 
 ##  🖱️ Use cases
 >This section is under construction
