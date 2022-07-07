@@ -10,6 +10,44 @@
 
 Templater is a REST API service that can store, manage and render templates. A Template is like a well-defined format in which data can be entered. The output generated is according to the format defined in the template. Templater helps us simplify and enhance this process by providing multiple services such as Data transformation, Lambda API, User interface, Support for multiple engines, etc. 
 
+### What's a Template?
+
+A Template is a structure or a format which holds some kind of data. Templates can be written in many languages and engines such as Razor view, Handlebars etc. but typically Templates that are written combine HTML with special tags. We can use these Templates for many purposes. For example, we can write a Template to render a list of Employees through a Templating Engine.
+
+```html
+<h1> Employees ({{ employees.length }}) </h1>
+<ul>
+{{ #each students }}
+<li>{{ name }} ({joining { year }})</li>
+{{ /each }}
+</ul>
+```
+The data inside a Template is written in the form of JSON Strings and Objects. This data is usually retrieved from a backend or the database of the web application. For example,
+
+```json
+{  
+    "employee": {  
+        "name":       "sonoo",   
+        "salary":      56000,   
+        "year":        2011  
+    }  
+} 
+```
+This data is usually retrieved from a backend or the database of the web application. The [Templating Engines](#templating-engines) renders this data as HTML through Templates. Finally, the output generated is according to the format designed in the template. Templating is used to generate documents, reports and data in a certain format.
+
+### Templating Engines
+
+A Templating engine enables you to use static template files in your application. At runtime, the template engine replaces variables in a template file with actual values, and transforms the template into an HTML file sent to the client. This approach makes it easier to design an HTML page. These engines allow you to load data dynamically onto your website Front end. When you build a server-side application with a template engine, the template engine replaces the variables in a template file with actual values, and displays this value to the client. This makes it easier to quickly build our application.
+
+Some Popular Examples of Templating Engines include:
+- [EJS](https://ejs.co/)
+- [Jade](https://jade-lang.com/)
+- [Pug](https://pugjs.org/)
+- [Mustache](https://mustache.github.io/)
+- [HandlebarsJS](https://handlebarsjs.com/)
+- [Jinja2](https://jinja.palletsprojects.com/en/2.11.x/templates/) and [Nunjucks](https://mozilla.github.io/nunjucks/)
+- [Blade](https://laravel.com/docs/9.x/blade)
+
 ## 📖 Table of Contents 
 
 - [Objectives](#🏹-objectives)
@@ -39,7 +77,8 @@ The objectives of templater are as follows:
 
 The Transformer is one of the building blocks of Templater API. It helps us in Data transformation. Before inserting data into a template we can run a Transformer, they are of two types:
 
-1. OPTIONS
+1. OPTIONS:
+
 This transformer replaces the target item with the specified value. These two items are stored in the form of key-value pairs. The key parameter contains the target item while the value paramater consists of new item which will replace the target item. For example:
 
 ```js
@@ -52,7 +91,7 @@ This transformer replaces the target item with the specified value. These two it
                 "value": "This is the new text which will be replaced"
             },
             {
-                "key": "Pratik",
+                "key": "Jason",
                 "value": "Sam"
             }
         ]
@@ -62,7 +101,8 @@ This transformer replaces the target item with the specified value. These two it
 
 In the above case, Whenever the text “Original Text” is hit, It will be immediately replaced by the contents of the value parameter "This is the new text which will be replaced". Similarly, when the string “Pratik” is found, it will be directly replaced by the string “Sam”.
 
-2. Cloud Functions
+2. Cloud Functions:
+
 For a particular key, this transformer can trigger a specific cloud function. Whenever a value is found that matches the key parameter, this Transformer will invoke a cloud function that is specified in the value parameter For example:
 
 ```js
@@ -87,9 +127,9 @@ For a particular key, this transformer can trigger a specific cloud function. Wh
 Here, the integer 1 will trigger the cloud function "cloudfunctions.googleapis.com". Similarly, the integer 2 will trigger another cloud function "cloudbuild.googleapis.com".
 
 ### Lambda API
->This section is under construction
+Lambda API allows the user to create lambda’s. We can achieve this by defining Lambda functions.
 
-##  🚻 Use cases
+##  🖱️ Use cases
 >This section is under construction
 
 ## 🪜 API Overview
@@ -120,6 +160,9 @@ git clone https://github.com/username/templater-docs.git
 3. Next step is to establish an upstream connection with the base repository
 ```shell
 cd templater
+```
+
+```shell
 git remote add upstream https://github.com/Samarth-HP/templater.git
 ```
 
@@ -129,7 +172,7 @@ Now if want to make a new change to the code base, we create a new 'feature bran
 git checkout master
 git pull upstream master
 git checkout -b my-feature-branch 
-# make your changes to the source code
+# make changes here
 git push origin HEAD
 ```
 ### Dealing with merge conflicts
