@@ -130,7 +130,9 @@ For a particular key, this transformer can trigger a specific cloud function. Wh
 Here, the integer 1 will trigger the cloud function "cloudfunctions.googleapis.com". Similarly, the integer 2 will trigger another cloud function "cloudbuild.googleapis.com".
 
 ### Lambda API
-Lambda API allows the user to create lambda’s. We can achieve this by defining Lambda functions.
+>This section is under construction
+
+### Playground
 
 ##  🖱️ Use cases
 >This section is under construction
