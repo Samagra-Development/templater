@@ -12,7 +12,7 @@ Templater is a REST API service that can store, manage and render templates. A T
 
 Templater provides a common API for all the Templating Engines. This API helps the user manage the Templates across different Templating Engines. Most importantly, Templater allows the user to store, retrive, render and update these templates easily through a common Templater API.
 
-### What's a Template?
+## What's a Template?
 
 A Template is a structure or a format which holds some kind of data. Templates can be written in many languages and engines such as HTML, Javascript, Typescript, Razor view, Handlebars etc. But typically Templates that are written combine HTML with special tags. We can use these Templates for many purposes. 
 
@@ -39,7 +39,7 @@ The data inside a Template is written in the form of JSON Strings and Objects. T
 ```
 This data is usually retrieved from a backend or the database of the web application. The [Templating Engines](#templating-engines) renders this data as HTML through Templates. Finally, the output generated is according to the format designed in the template. Templating is used to generate documents, reports and data in a certain format.
 
-### Templating Engines
+## Templating Engines
 
 A Templating engine enables you to use static template files in your application. At runtime, the template engine replaces variables in a template file with actual values, and transforms the template into an HTML file sent to the client. This approach makes it easier to design an HTML page. These engines allow you to load data dynamically onto your website Front end. When you build a server-side application with a template engine, the template engine replaces the variables in a template file with actual values, and displays this value to the client. This makes it easier to quickly build our application.
 
@@ -68,12 +68,14 @@ Some Popular Examples of Templating Engines include:
 
 The objectives of templater are as follows:
 
-- Efficient template management and storage
-- Provide CRUD operations on templates with the help of our API
-- Allow rendering of the templates. Rendering is the output generated after filling the data. It is a combination of Data + Template. A - person inputs some data to the template, Whatever output is achieved is considered to be part of the rendering procedure
+- [x] Efficient template management and storage
+- [x] Provide CRUD operations on templates with the help of our API
+- [x] Allow rendering of the templates. Rendering is the output generated after filling the data. It is a combination of Data + Template. A - person inputs some data to the template, Whatever output is achieved is considered to be part of the rendering procedure
+- [x] Templater Playground to perform various operations on a Template
+- [x] Templater provides us with our own version of Lambda API
 
 ##  👷 Architecture
-The Templater Architecture is divide into several components.
+The Templater Architecture is divided into several components.
 
 >This section is under construction
 
@@ -145,6 +147,20 @@ The languages supported for writing templates are Plain text, HTML, Typescript a
 
 ![Playground image](ui/public/playground-img.png)
 
+### Use it
+
+- Move to the templater folder in your local machine
+```shell
+cd templater
+```
+- Navigate to the ui section inside the folder
+```shell
+cd ui
+```
+- Run the following command to start the Playground Server on the port 3000
+```shell
+yarn start
+```
 ##  🖱️ Use cases
 >This section is under construction
 
@@ -154,7 +170,7 @@ The languages supported for writing templates are Plain text, HTML, Typescript a
 ## 🔭 Schema Overview
 >This section is under construction
 
-## ℹ Contribution Guidelines
+## 🔎 Contribution Guidelines
 If you are a new developer looking to contribute something to Templater, please take a look and see if there's anything that you'd like to work on in the [issue tracker](https://github.com/Samarth-HP/templater/issues).
 
 The "Good First Issue" label has been added to any tasks that seem like a good way to get started working with the codebase.
