@@ -132,8 +132,13 @@ Here, the integer 1 will trigger the cloud function "cloudfunctions.googleapis.c
 ### Lambda API
 >This section is under construction
 
-### Playground
->This section is under construction
+### Templater Playground
+Templater provides a web based user interface to perform various operations on a template. The playground supports multiple Templating engines like JSTL, Jinja and EJS. 
+The languages supported for writing templates are Plain text, HTML, Typescript and Javascript. The Playground allows the user to explore and utilize the Templater features easily through its User interface.
+
+> Templater playground with an HTML Template
+
+![Playground image](ui/public/playground-img.png)
 
 ##  🖱️ Use cases
 >This section is under construction
