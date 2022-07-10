@@ -8,7 +8,7 @@
 
 # 📃 Templater
 
-Templater is a REST API service that can store, manage and render templates. A Template is like a well-defined format in which data can be entered. The output generated is according to the format defined in the template. Templater helps us simplify and enhance this process by providing multiple services such as Data transformation, Lambda API, User interface, Support for multiple engines, etc. 
+Templater is a REST API service that can store, manage and render templates. A Template is like a well-defined format in which data can be entered. The output generated is according to the format defined in the template. Templater helps us simplify and enhance this process by providing multiple services such as Data transformation, Lambda API, Templater Playground, Support for multiple engines, etc. 
 
 Templater provides a common API for all the Templating Engines. This API helps the user manage the Templates across different Templating Engines. Most importantly, Templater allows the user to store, retrive, render and update these templates easily through a common Templater API.
 
@@ -16,7 +16,7 @@ Templater provides a common API for all the Templating Engines. This API helps t
 
 A Template is a structure or a format which holds some kind of data. Templates can be written in many languages and engines such as HTML, Javascript, Typescript, Razor view, Handlebars etc. But typically Templates that are written combine HTML with special tags. We can use these Templates for many purposes. 
 
-For example, we can write a Template to render a list of Employees through a Templating Engine.
+>For example, we can write a Template to render a list of Employees through a Templating Engine.
 
 ```html
 <h1> Employees ({{ employees.length }}) </h1>
@@ -37,7 +37,7 @@ The data inside a Template is written in the form of JSON Strings and Objects. T
     }  
 } 
 ```
-This data is usually retrieved from a backend or the database of the web application. The [Templating Engines](#templating-engines) renders this data as HTML through Templates. Finally, the output generated is according to the format designed in the template. Templating is used to generate documents, reports and data in a certain format.
+This data is usually retrieved from a backend or the database of the web application. The Templating Engines renders this data as HTML through Templates. Finally, the output generated is according to the format designed in the template. Templating is used to generate documents, reports and data in a certain format.
 
 ## Templating Engines
 
@@ -108,7 +108,7 @@ This transformer replaces the target item with the specified value. These two it
 }
 ```
 
-In the above case, Whenever the text “Original Text” is hit, It will be immediately replaced by the contents of the value parameter "This is the new text which will be replaced". Similarly, when the string “Pratik” is found, it will be directly replaced by the string “Sam”.
+In the above case, Whenever the text “Original Text” is hit, It will be immediately replaced by the contents of the value parameter "This is the new text which will be replaced". Similarly, when the string “Jason” is found, it will be directly replaced by the string “Sam”.
 
 2. Cloud Functions:
 
@@ -165,9 +165,6 @@ yarn start
 >This section is under construction
 
 ## 🪜 API Overview
->This section is under construction
-
-## 🔭 Schema Overview
 >This section is under construction
 
 ## 🔎 Contribution Guidelines
