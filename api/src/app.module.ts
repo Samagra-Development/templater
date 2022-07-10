@@ -13,6 +13,7 @@ import { JinjaService } from './engines/jinja/jinja.service';
 import { EjsService } from './engines/ejs/ejs.service';
 import { VMService } from './core/lambda/vm.service';
 import { SingletonServiceModule } from './singletonService.module';
+import { I18nController } from './core/i18n/i18n/i18n.controller';
 
 @Module({
   imports: [SingletonServiceModule],
@@ -21,6 +22,7 @@ import { SingletonServiceModule } from './singletonService.module';
     TransformerController,
     TemplateController,
     LambdaService,
+    I18nController,
   ],
   exports: [VMService],
   providers: [
