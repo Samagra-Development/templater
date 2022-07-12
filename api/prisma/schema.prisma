@@ -252,6 +252,8 @@ model Template {
   Audit          Audit[]
   ExecutionAudit ExecutionAudit[]
   transformers   TransformerPathMapping[]
+
+  @@index([tag])
 }
 
 model Audit {

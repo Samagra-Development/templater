@@ -58,4 +58,39 @@ export class TemplateService {
       where,
     });
   }
+
+  async searchTag(queryString: string): Promise<Template[]> {
+    return this.prisma.template.findMany({
+      take: 200,
+      where: {
+        tag: {
+          has: queryString,
+        },
+      },
+    });
+  }
+
+  async searchBody(queryString: string): Promise<Template[]> {
+    return this.prisma.template.findMany({
+      take: 200,
+      where: {
+        OR: [
+          {
+            body: {
+              contains: queryString,
+              mode: 'insensitive',
+            },
+            bodyI18n: {
+              every: {
+                body: {
+                  contains: queryString,
+                  mode: 'insensitive',
+                },
+              },
+            },
+          },
+        ],
+      },
+    });
+  }
 }

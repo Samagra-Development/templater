@@ -1,3 +1,4 @@
 .DS_Store
 pgdata
 dist
+node_modules/
