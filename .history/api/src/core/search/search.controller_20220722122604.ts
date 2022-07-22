@@ -8,10 +8,8 @@ export class SearchController {
   constructor(private readonly templateService: TemplateService) {}
 
   @Get('tag')
-  async searchTag(
-    @Query() queryString: { queryString: string },
-  ): Promise<Template[]> {
-    return this.templateService.searchTag(queryString.queryString);
+  async searchTag(@Query() queryString: string): Promise<Template[]> {
+    return this.templateService.searchTag(queryString);
   }
 
   @Get('body')
