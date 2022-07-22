@@ -86,3 +86,5 @@ $ yarn install
 
 Postman can send gRPC requests now. This can be used to test the gRPC server. It doesn't allow to share though.
 ![grpc.png](./images/grpc.png)
+
+## Deployment status
