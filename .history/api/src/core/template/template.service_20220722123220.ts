@@ -72,25 +72,8 @@ export class TemplateService {
   }
 
   async searchBody(queryString: string): Promise<Template[]> {
-    console.log({
-      body: {
-        contains: queryString,
-        mode: 'insensitive',
-      },
-      bodyI18n: {
-        every: {
-          body: {
-            contains: queryString,
-            mode: 'insensitive',
-          },
-        },
-      },
-    });
     return this.prisma.template.findMany({
       take: 200,
-      include: {
-        bodyI18n: true,
-      },
       where: {
         OR: [
           {
@@ -98,10 +81,8 @@ export class TemplateService {
               contains: queryString,
               mode: 'insensitive',
             },
-          },
-          {
             bodyI18n: {
-              some: {
+              every: {
                 body: {
                   contains: queryString,
                   mode: 'insensitive',

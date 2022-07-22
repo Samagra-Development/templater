@@ -88,9 +88,6 @@ export class TemplateService {
     });
     return this.prisma.template.findMany({
       take: 200,
-      include: {
-        bodyI18n: true,
-      },
       where: {
         OR: [
           {
@@ -98,10 +95,8 @@ export class TemplateService {
               contains: queryString,
               mode: 'insensitive',
             },
-          },
-          {
             bodyI18n: {
-              some: {
+              every: {
                 body: {
                   contains: queryString,
                   mode: 'insensitive',

@@ -6,11 +6,53 @@
 
 
 
-## 📃 Templater
+# 📃 Templater
 
-Templater is a REST API service that can store, manage and render templates. A Template is like a well-defined format in which data can be entered. The output generated is according to the format defined in the template. Templater helps us simplify and enhance this process by providing multiple services such as Data transformation, Lambda API, User interface, Support for multiple engines, etc. 
+Templater is a REST API service that can store, manage and render templates. A Template is like a well-defined format in which data can be entered. The output generated is according to the format defined in the template. Templater helps us simplify and enhance this process by providing multiple services such as Data transformation, Lambda API, Templater Playground, Support for multiple engines, etc. 
 
-### 📖 Table of Contents 
+Templater provides a common API for all the Templating Engines. This API helps the user manage the Templates across different Templating Engines. Most importantly, Templater allows the user to store, retrive, render and update these templates easily through a common Templater API.
+
+## What's a Template?
+
+A Template is a structure or a format which holds some kind of data. Templates can be written in many languages and engines such as HTML, Javascript, Typescript, Razor view, Handlebars etc. But typically Templates that are written combine HTML with special tags. We can use these Templates for many purposes. 
+
+>For example, we can write a Template to render a list of Employees through a Templating Engine.
+
+```html
+<h1> Employees ({{ employees.length }}) </h1>
+<ul>
+{{ #each students }}
+<li>{{ name }} ({joining { year }})</li>
+{{ /each }}
+</ul>
+```
+The data inside a Template is written in the form of JSON Strings and Objects. This data is usually retrieved from a backend or the database of the web application. For example,
+
+```json
+{  
+    "employee": {  
+        "name":       "sonoo",   
+        "salary":      56000,   
+        "year":        2011  
+    }  
+} 
+```
+This data is usually retrieved from a backend or the database of the web application. The Templating Engines renders this data as HTML through Templates. Finally, the output generated is according to the format designed in the template. Templating is used to generate documents, reports and data in a certain format.
+
+## Templating Engines
+
+A Templating engine enables you to use static template files in your application. At runtime, the template engine replaces variables in a template file with actual values, and transforms the template into an HTML file sent to the client. This approach makes it easier to design an HTML page. These engines allow you to load data dynamically onto your website Front end. When you build a server-side application with a template engine, the template engine replaces the variables in a template file with actual values, and displays this value to the client. This makes it easier to quickly build our application.
+
+Some Popular Examples of Templating Engines include:
+- [EJS](https://ejs.co/)
+- [Jade](https://jade-lang.com/)
+- [Pug](https://pugjs.org/)
+- [Mustache](https://mustache.github.io/)
+- [HandlebarsJS](https://handlebarsjs.com/)
+- [Jinja2](https://jinja.palletsprojects.com/en/2.11.x/templates/) & [Nunjucks](https://mozilla.github.io/nunjucks/)
+- [Blade](https://laravel.com/docs/9.x/blade)
+
+## 📖 Table of Contents 
 
 - [Objectives](#🏹-objectives)
 - [Architecture](#👷-architecture)
@@ -22,25 +64,30 @@ Templater is a REST API service that can store, manage and render templates. A T
 - [FAQs](#❓faqs)
 
 
-###  🏹 Objectives
+##  🏹 Objectives
 
 The objectives of templater are as follows:
 
-- Efficient template management and storage
-- Provide CRUD operations on templates with the help of our API
-- Allow rendering of the templates. Rendering is the output generated after filling the data. It is a combination of Data + Template. A - person inputs some data to the template, Whatever output is achieved is considered to be part of the rendering procedure
+- [x] Efficient template management and storage
+- [x] Provide CRUD operations on templates with the help of our API
+- [x] Allow rendering of the templates. Rendering is the output generated after filling the data. It is a combination of Data + Template. A - person inputs some data to the template, Whatever output is achieved is considered to be part of the rendering procedure
+- [x] Templater Playground to perform various operations on a Template
+- [x] Templater provides us with our own version of Lambda API
 
-###  👷 Architecture
-//text to be added here
+##  👷 Architecture
+The Templater Architecture is divided into several components.
+
+>This section is under construction
 
 
-###  💻 Core Features
+##  💻 Core Features
 
 ### Transformer
 
 The Transformer is one of the building blocks of Templater API. It helps us in Data transformation. Before inserting data into a template we can run a Transformer, they are of two types:
 
-1. OPTIONS
+1. OPTIONS:
+
 This transformer replaces the target item with the specified value. These two items are stored in the form of key-value pairs. The key parameter contains the target item while the value paramater consists of new item which will replace the target item. For example:
 
 ```js
@@ -53,7 +100,7 @@ This transformer replaces the target item with the specified value. These two it
                 "value": "This is the new text which will be replaced"
             },
             {
-                "key": "Pratik",
+                "key": "Jason",
                 "value": "Sam"
             }
         ]
@@ -61,9 +108,10 @@ This transformer replaces the target item with the specified value. These two it
 }
 ```
 
-In the above case, Whenever the text “Original Text” is hit, It will be immediately replaced by the contents of the value parameter "This is the new text which will be replaced". Similarly, when the string “Pratik” is found, it will be directly replaced by the string “Sam”.
+In the above case, Whenever the text “Original Text” is hit, It will be immediately replaced by the contents of the value parameter "This is the new text which will be replaced". Similarly, when the string “Jason” is found, it will be directly replaced by the string “Sam”.
 
-2. Cloud Functions
+2. Cloud Functions:
+
 For a particular key, this transformer can trigger a specific cloud function. Whenever a value is found that matches the key parameter, this Transformer will invoke a cloud function that is specified in the value parameter For example:
 
 ```js
@@ -88,19 +136,38 @@ For a particular key, this transformer can trigger a specific cloud function. Wh
 Here, the integer 1 will trigger the cloud function "cloudfunctions.googleapis.com". Similarly, the integer 2 will trigger another cloud function "cloudbuild.googleapis.com".
 
 ### Lambda API
-//text to be added here
+>This section is under construction
 
+### Templater Playground
+Templater provides a web based user interface to perform various operations on a template. The playground supports multiple Templating engines like JSTL, Jinja and EJS. 
 
-###  🚻 Use cases
-// content to be added
+The languages supported for writing templates are Plain text, HTML, Typescript and Javascript. The Playground allows the user to explore and utilize the Templater features easily through its User interface.
 
-### 🪜 API Overview
-//content to be added
+> Templater playground with an HTML Template
 
-### 🔭 Schema Overview
-//content to be added
+![Playground image](ui/public/playground-img.png)
 
-### ℹ Contribution Guidelines
+### Use it
+
+- Move to the templater folder in your local machine
+```shell
+cd templater
+```
+- Navigate to the ui section inside the folder
+```shell
+cd ui
+```
+- Run the following command to start the Playground Server on the port 3000
+```shell
+yarn start
+```
+##  🖱️ Use cases
+>This section is under construction
+
+## 🪜 API Overview
+>This section is under construction
+
+## 🔎 Contribution Guidelines
 If you are a new developer looking to contribute something to Templater, please take a look and see if there's anything that you'd like to work on in the [issue tracker](https://github.com/Samarth-HP/templater/issues).
 
 The "Good First Issue" label has been added to any tasks that seem like a good way to get started working with the codebase.
@@ -122,6 +189,9 @@ git clone https://github.com/username/templater-docs.git
 3. Next step is to establish an upstream connection with the base repository
 ```shell
 cd templater
+```
+
+```shell
 git remote add upstream https://github.com/Samarth-HP/templater.git
 ```
 
@@ -131,7 +201,7 @@ Now if want to make a new change to the code base, we create a new 'feature bran
 git checkout master
 git pull upstream master
 git checkout -b my-feature-branch 
-# make your changes to the source code
+# make changes here
 git push origin HEAD
 ```
 ### Dealing with merge conflicts
@@ -163,8 +233,15 @@ Generating docs when you are done -
 npx @compodoc/compodoc -p tsconfig.json -s
 ```
 
-### ❓FAQs
-//content to be added
+### Development Environment
+
+Click the button below to start working in a new ready to code development environment
+
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#<your-project-url>)
+
+
+## ❓FAQs
+>This section is under construction
 
 ## Contributors
 

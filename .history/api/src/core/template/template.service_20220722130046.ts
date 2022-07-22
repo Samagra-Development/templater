@@ -99,16 +99,6 @@ export class TemplateService {
               mode: 'insensitive',
             },
           },
-          {
-            bodyI18n: {
-              some: {
-                body: {
-                  contains: queryString,
-                  mode: 'insensitive',
-                },
-              },
-            },
-          },
         ],
       },
     });

@@ -14,7 +14,10 @@ import { EjsService } from './engines/ejs/ejs.service';
 import { VMService } from './core/lambda/vm.service';
 import { SingletonServiceModule } from './singletonService.module';
 import { I18nController } from './core/i18n/i18n/i18n.controller';
+<<<<<<< HEAD
+=======
 import { SearchController } from './core/search/search.controller';
+>>>>>>> 3296e6186e13dc977ad9c926a00ee301aac12522
 
 @Module({
   imports: [SingletonServiceModule],
@@ -24,7 +27,10 @@ import { SearchController } from './core/search/search.controller';
     TemplateController,
     LambdaService,
     I18nController,
+<<<<<<< HEAD
+=======
     SearchController,
+>>>>>>> 3296e6186e13dc977ad9c926a00ee301aac12522
   ],
   exports: [VMService],
   providers: [

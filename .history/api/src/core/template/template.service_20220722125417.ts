@@ -98,8 +98,6 @@ export class TemplateService {
               contains: queryString,
               mode: 'insensitive',
             },
-          },
-          {
             bodyI18n: {
               some: {
                 body: {
