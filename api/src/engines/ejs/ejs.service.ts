@@ -1,11 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import ejs from 'ejs';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const ejs = require('ejs');
 
 @Injectable()
 export class EjsService {
-  engine: ejs;
-  constructor() {}
-
+  engine: any = ejs;
   render = (templateText: string, data: any, fallback: string = '') => {
     return this.engine.render(templateText, data);
   };
