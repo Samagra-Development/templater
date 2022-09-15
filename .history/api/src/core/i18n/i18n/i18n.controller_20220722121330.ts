@@ -1,12 +1,4 @@
-import {
-  BadRequestException,
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Post,
-} from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { Template, TemplateType, Prisma } from '@prisma/client';
 import { PrismaService } from '../../../prisma.service';
 import { TransformerService } from '../../transformer/transformer.service';
@@ -31,23 +23,7 @@ export class I18nController {
   async addTemplate(
     @Body() templateData: Prisma.TemplateCreateInput,
   ): Promise<Template> {
-    const hasDuplicate = (arrayObj, colName) => {
-      var hash = Object.create(null);
-      return arrayObj.some((arr) => {
-        return (
-          arr[colName] && (hash[arr[colName]] || !(hash[arr[colName]] = true))
-        );
-      });
-    };
-    const isDuplicate: Boolean = hasDuplicate(
-      templateData.bodyI18n.createMany.data,
-      'lang',
-    );
-    if (isDuplicate) {
-      throw new BadRequestException('Duplicate language codes not allowed');
-    } else {
-      return this.templateService.createTemplate(templateData);
-    }
+    return this.templateService.createTemplate(templateData);
   }
 
   @Post('process')

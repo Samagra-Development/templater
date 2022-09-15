@@ -10,7 +10,7 @@ import {
 import { Template, TemplateType, Prisma } from '@prisma/client';
 import { PrismaService } from '../../../prisma.service';
 import { TransformerService } from '../../transformer/transformer.service';
-import { RenderDto, RenderResponse } from '../../dto/render';
+import { RenderDto, RenderDtoTest, RenderResponse } from '../../dto/render';
 import { JsTLService } from 'src/engines/jstl/jstl.service';
 import { TemplateService } from '../../template/template.service';
 import { JinjaService } from 'src/engines/jinja/jinja.service';
@@ -44,7 +44,7 @@ export class I18nController {
       'lang',
     );
     if (isDuplicate) {
-      throw new BadRequestException('Duplicate language codes not allowed');
+      throw new BadRequestException('Unique language codes not allowed');
     } else {
       return this.templateService.createTemplate(templateData);
     }
