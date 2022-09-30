@@ -3,3 +3,4 @@ pgdata
 dist
 node_modules/
 history
+package-lock.json

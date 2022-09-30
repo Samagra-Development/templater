@@ -26,12 +26,12 @@ services:
   #     HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
   #     HASURA_GRAPHQL_ADMIN_SECRET: ${HASURA_ADMIN_PASS}
 
-  templater:
-    image: sha256:a8e39ea135548eacb2d6277d6a67d9e36d0da2d1130042bc6eff6646e7e1854b
-    ports:
-      - '3007:3000'
-    depends_on:
-      - templaterDb
-    restart: always
-    environment:
-      DATABASE_URL: ${DATABASE_URL}
+  # templater:
+  #   image: sha256:a8e39ea135548eacb2d6277d6a67d9e36d0da2d1130042bc6eff6646e7e1854b
+  #   ports:
+  #     - '3007:3000'
+  #   depends_on:
+  #     - templaterDb
+  #   restart: always
+  #   environment:
+  #     DATABASE_URL: ${DATABASE_URL}

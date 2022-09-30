@@ -1,4 +1,7 @@
 import AceEditor, { IAceOptions } from 'react-ace';
+import 'ace-builds/src-noconflict/mode-json';
+import 'ace-builds/src-noconflict/theme-github';
+import 'ace-builds/webpack-resolver';
 import { Box, SimpleGrid } from '@chakra-ui/react';
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
 import axios, { AxiosResponse } from 'axios';
@@ -34,6 +37,7 @@ export function BodyEditor(props: any) {
                     enableSnippets: false,
                     showLineNumbers: true,
                     tabSize: 2,
+                    useWorker: false,
                 }}
                 name="UNIQUE_ID_OF_DIV"
                 value={props.bodyValue}
@@ -77,6 +81,9 @@ export function RenderedTemplate(props: any) {
                     readOnly={true}
                     name="RENDERED_TEMPLATE"
                     editorProps={{ $blockScrolling: true }}
+                    setOptions={{
+                        useWorker: false,
+                    }}
                 />
             </Box>
         );
@@ -92,6 +99,9 @@ export function RenderedTemplate(props: any) {
                     readOnly={true}
                     name="RENDERED_TEMPLATE"
                     editorProps={{ $blockScrolling: true }}
+                    setOptions={{
+                        useWorker: false,
+                    }}
                 />
             </Box>
         );
@@ -106,6 +116,9 @@ export function RenderedTemplate(props: any) {
                 readOnly={true}
                 name="RENDERED_TEMPLATE"
                 editorProps={{ $blockScrolling: true }}
+                setOptions={{
+                    useWorker: false,
+                }}
             />
         </Box>
     );
@@ -119,9 +132,17 @@ export function DataEditor(props: any) {
                 mode="json"
                 theme="monokai"
                 name="JSON_EDITOR"
+                showGutter={true}
                 value={props.dataValue}
+                onValidate={() => {
+                    console.log('An error has occured');
+                }}
                 onChange={(val) => {
-                    console.log({ val });
+                    // try {
+                    //     let myResponse = JSON.parse(val);
+                    // } catch (e) {
+                    console.log(val);
+                    // }
                     props.setDataValue(val);
                 }}
                 editorProps={{ $blockScrolling: true }}
