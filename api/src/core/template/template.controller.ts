@@ -44,6 +44,7 @@ export class TemplateController {
     switch (template.type) {
       case TemplateType.JINJA:
         processed = this.jinjaService.render(template.body, transformedData);
+        break;
 
       case TemplateType.JS_TEMPLATE_LITERALS:
         processed = this.jstlService.render(template.body, transformedData);
@@ -57,7 +58,7 @@ export class TemplateController {
     }
     return {
       processed,
-      templateType: TemplateType.JS_TEMPLATE_LITERALS,
+      templateType: template.type,
       data: renderDto.data,
       template: 'test',
       meta: template.meta,
