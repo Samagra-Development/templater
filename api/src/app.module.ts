@@ -15,9 +15,10 @@ import { VMService } from './core/lambda/vm.service';
 import { SingletonServiceModule } from './singletonService.module';
 import { I18nController } from './core/i18n/i18n/i18n.controller';
 import { SearchController } from './core/search/search.controller';
+import { HealthModule } from './health/health.module';
 
 @Module({
-  imports: [SingletonServiceModule],
+  imports: [SingletonServiceModule, HealthModule],
   controllers: [
     LambdaController,
     TransformerController,
