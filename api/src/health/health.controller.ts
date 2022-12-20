@@ -6,7 +6,7 @@ import {
   MemoryHealthIndicator,
 } from '@nestjs/terminus';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { PrismaHealthIndicator } from '../../prisma/prisma.health';
+import { PrismaHealthIndicator } from './prisma.health';
 import { ClientGrpc } from '@nestjs/microservices';
 import { Language } from '@prisma/client';
 import { LambdaService } from '../core/lambda/lambda.service';

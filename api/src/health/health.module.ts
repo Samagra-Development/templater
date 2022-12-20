@@ -4,7 +4,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
 import { TerminusModule } from '@nestjs/terminus';
 import { join } from 'path';
 import { PrismaService } from 'src/prisma.service';
-import { PrismaHealthIndicator } from '../../prisma/prisma.health';
+import { PrismaHealthIndicator } from './prisma.health';
 import { HealthController } from './health.controller';
 
 @Module({
