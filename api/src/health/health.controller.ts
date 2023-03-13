@@ -31,7 +31,7 @@ export class HealthController {
   async checkHealth() {
     return this.health.check([
       async () => this.prismaIndicator.isHealthy('Db'),
-      async () => this.memory.checkHeap('memory_heap', 150 * 1024 * 1024),
+      // async () => this.memory.checkHeap('memory_heap', 150 * 1024 * 1024),
       async () =>
         this.grpc.checkService('GRPC', 'LambdaService', {
           healthServiceCheck: (healthService: any, serviceName: string) => {
