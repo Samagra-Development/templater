@@ -241,7 +241,7 @@ Click the button below to start working in a new ready to code development envir
 
 
 ## ❓FAQs
->This section is under construction
+>This section is under construction and will be updated soon
 
 ## Contributors
 
