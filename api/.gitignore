@@ -38,7 +38,3 @@ lerna-debug.log*
 pgdata
 
 .env
-
-# lock files
-package-lock.json
-yarn.lock
