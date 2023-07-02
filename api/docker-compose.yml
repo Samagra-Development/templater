@@ -1,7 +1,7 @@
 version: '2'
 services:
-  templaterDb:
-    container_name: templaterDb
+  templaterdb:
+    container_name: templaterdb
     image: postgres:12
     ports:
       - '${POSTGRES_HOST}:5432'
@@ -13,25 +13,25 @@ services:
     volumes:
       - ./pgdata:/var/lib/postgresql/data
 
-  # gql:
-  #   image: ${HASURA_VERSION}
+  gql:
+    image: ${HASURA_VERSION}
+    ports:
+      - '10022:8080'
+    depends_on:
+      - templaterdb
+    restart: always
+    environment:
+      HASURA_GRAPHQL_DATABASE_URL: postgres://${DB_USERNAME}:${DB_PASSWORD}@templaterdb:5432/${DB_NAME}
+      HASURA_GRAPHQL_ENABLE_CONSOLE: 'true' # set to "false" to disable console
+      HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
+      HASURA_GRAPHQL_ADMIN_SECRET: ${HASURA_ADMIN_PASS}
+
+  # templater:
+  #   image: samagragovernance/templater:latest
   #   ports:
-  #     - '10022:8080'
+  #     - '${PORT}:3000'
   #   depends_on:
   #     - templaterdb
   #   restart: always
   #   environment:
-  #     HASURA_GRAPHQL_DATABASE_URL: postgres://${DB_USERNAME}:${DB_PASSWORD}@templaterdb:5432/${DB_NAME}
-  #     HASURA_GRAPHQL_ENABLE_CONSOLE: 'true' # set to "false" to disable console
-  #     HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
-  #     HASURA_GRAPHQL_ADMIN_SECRET: ${HASURA_ADMIN_PASS}
-
-  templater:
-    image: samagragovernance/templater:latest
-    ports:
-      - '${PORT}:3000'
-    depends_on:
-      - templaterDb
-    restart: always
-    environment:
-      DATABASE_URL: ${DATABASE_URL}
+  #     DATABASE_URL: ${DATABASE_URL}
