@@ -105,7 +105,7 @@ export class TemplateController {
 
   @Post('/process/testMany')
   async renderTestMany(@Body() data: RenderDtoTest): Promise<RenderResponse> {
-    let processed = [];
+    const processed = [];
     let transformedData;
     try {
       transformedData = JSON.parse(data.sampleData);
