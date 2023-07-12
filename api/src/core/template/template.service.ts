@@ -1,19 +1,27 @@
 import { Injectable } from '@nestjs/common';
-import { Template, Prisma } from '@prisma/client';
+import { Template, Prisma, PrismaClient } from '@prisma/client';
 import { PrismaService } from '../../prisma.service';
+import { RenderDto } from '../dto/render';
 
 @Injectable()
 export class TemplateService {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    private prismaClient: PrismaClient,
+  ) {}
 
-  async template(
-    userWhereUniqueInput: Prisma.TemplateWhereUniqueInput,
-  ): Promise<Template | null> {
+  async getTemplate(data: RenderDto): Promise<Template> {
     return this.prisma.template.findUnique({
-      where: userWhereUniqueInput,
+      where: {
+        id: data.id,
+      },
       include: {
-        transformers: true,
         bodyI18n: true,
+        transformers: {
+          include: {
+            transformer: true,
+          },
+        },
       },
     });
   }

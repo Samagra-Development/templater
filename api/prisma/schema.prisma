@@ -245,11 +245,11 @@ model Template {
   type           TemplateType
   useCase        String?
   body           String?
-  bodyI18n       BodyI18n[]
   meta           Json?
   user           String                   @db.Uuid
   tag            String[]
   Audit          Audit[]
+  bodyI18n       BodyI18n[]
   ExecutionAudit ExecutionAudit[]
   transformers   TransformerPathMapping[]
 
@@ -323,3 +323,4 @@ model BodyI18n {
   templateId   BigInt
   template     Template                      @relation(fields: [templateId], references: [id])
 }
+
