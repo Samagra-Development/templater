@@ -16,10 +16,10 @@ import { SingletonServiceModule } from './singletonService.module';
 import { I18nController } from './core/i18n/i18n/i18n.controller';
 import { SearchController } from './core/search/search.controller';
 import { HealthModule } from './health/health.module';
-import { RenderModule } from './core/render/render.module';
+import { RenderService } from './core/render/render.service';
 
 @Module({
-  imports: [SingletonServiceModule, HealthModule, RenderModule],
+  imports: [SingletonServiceModule, HealthModule],
   controllers: [
     LambdaController,
     TransformerController,
@@ -40,6 +40,7 @@ import { RenderModule } from './core/render/render.module';
     JinjaService,
     EjsService,
     VMService,
+    RenderService,
   ],
 })
 export class AppModule {}

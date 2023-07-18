@@ -1,11 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import { RenderDtoTest, RenderResponse, RenderDto } from '../dto/render';
 import { JinjaService } from 'src/engines/jinja/jinja.service';
 import { JsTLService } from 'src/engines/jstl/jstl.service';
 import { EjsService } from 'src/engines/ejs/ejs.service';
 import { TransformerService } from '../transformer/transformer.service';
-import { Template, TemplateType, Prisma } from '@prisma/client';
-import { TemplateService } from '../template/template.service';
+import {
+  RenderDocGenDTO,
+  RenderDocGenResponse,
+  RenderDocGenTest,
+  TemplateType,
+} from './types';
 
 @Injectable()
 export class RenderService {
@@ -14,12 +17,10 @@ export class RenderService {
     private jstlService: JsTLService,
     private ejsService: EjsService,
     private transformerService: TransformerService,
-    private templateService: TemplateService,
   ) {}
 
-  async renderTemplate(data: RenderDto): Promise<RenderResponse> {
-    const template = await this.templateService.getTemplate(data);
-    let processed;
+  async renderTemplate(data: RenderDocGenDTO): Promise<RenderDocGenResponse> {
+    const template = data.template;
     let transformedData = data.data;
     for (const transformer of template.transformers) {
       transformedData = await this.transformerService.process(
@@ -28,6 +29,7 @@ export class RenderService {
         transformer.path,
       );
     }
+    let processed;
     switch (template.type) {
       case TemplateType.JINJA:
         processed = this.jinjaService.render(template.body, transformedData);
@@ -52,7 +54,7 @@ export class RenderService {
     };
   }
 
-  renderTemplateTest(data: RenderDtoTest): RenderResponse {
+  renderTemplateTest(data: RenderDocGenTest): RenderDocGenResponse {
     let processed;
     let transformedData;
     try {
@@ -89,7 +91,7 @@ export class RenderService {
     };
   }
 
-  renderTemplateManyTest(data: RenderDtoTest): RenderResponse {
+  renderTemplateManyTest(data: RenderDocGenTest): RenderDocGenResponse {
     const processed = [];
     let transformedData;
     try {
