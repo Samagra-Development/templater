@@ -16,10 +16,10 @@ import { SingletonServiceModule } from './singletonService.module';
 import { I18nController } from './core/i18n/i18n/i18n.controller';
 import { SearchController } from './core/search/search.controller';
 import { HealthModule } from './health/health.module';
-import { DocgenModule } from './docgen/docgen.module';
+import { RenderModule } from './core/render/render.module';
 
 @Module({
-  imports: [SingletonServiceModule, HealthModule, DocgenModule],
+  imports: [SingletonServiceModule, HealthModule, RenderModule],
   controllers: [
     LambdaController,
     TransformerController,
