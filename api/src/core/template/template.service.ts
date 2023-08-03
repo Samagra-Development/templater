@@ -6,7 +6,7 @@ import { PrismaService } from '../../prisma.service';
 export class TemplateService {
   constructor(private prisma: PrismaService) {}
 
-  async getTemplate(
+  async template(
     userWhereUniqueInput: Prisma.TemplateWhereUniqueInput,
   ): Promise<Template | null> {
     return this.prisma.template.findUnique({

@@ -1,11 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { RenderDtoTest, RenderResponse, RenderDto } from '../dto/render';
 import { JinjaService } from 'src/engines/jinja/jinja.service';
 import { JsTLService } from 'src/engines/jstl/jstl.service';
 import { EjsService } from 'src/engines/ejs/ejs.service';
-import { TransformerService } from '../transformer/transformer.service';
-import { Template, TemplateType, Prisma } from '@prisma/client';
-import { TemplateService } from '../template/template.service';
+import * as types from './types';
 
 @Injectable()
 export class RenderService {
@@ -13,31 +10,22 @@ export class RenderService {
     private jinjaService: JinjaService,
     private jstlService: JsTLService,
     private ejsService: EjsService,
-    private transformerService: TransformerService,
-    private templateService: TemplateService,
   ) {}
 
-  async renderTemplate(data: RenderDto): Promise<RenderResponse> {
-    const template = await this.templateService.getTemplate(data);
+  async renderTemplate(data: types.RenderDTO): Promise<types.RenderResponse> {
+    const template = data.template;
+    const transformedData = data.data;
     let processed;
-    let transformedData = data.data;
-    for (const transformer of template.transformers) {
-      transformedData = await this.transformerService.process(
-        transformer.transformer,
-        transformedData,
-        transformer.path,
-      );
-    }
     switch (template.type) {
-      case TemplateType.JINJA:
+      case types.TemplateType.JINJA:
         processed = this.jinjaService.render(template.body, transformedData);
         break;
 
-      case TemplateType.JS_TEMPLATE_LITERALS:
+      case types.TemplateType.JS_TEMPLATE_LITERALS:
         processed = this.jstlService.render(template.body, transformedData);
         break;
 
-      case TemplateType.EJS:
+      case types.TemplateType.EJS:
         processed = this.ejsService.render(template.body, transformedData);
         break;
       default:
@@ -47,12 +35,12 @@ export class RenderService {
       processed,
       templateType: template.type,
       data: data.data,
-      template: 'test',
-      meta: template.meta,
+      templateBody: template.body,
+      meta: 'meta',
     };
   }
 
-  renderTemplateTest(data: RenderDtoTest): RenderResponse {
+  renderTemplateTest(data: types.RenderTestDTO): types.RenderResponse {
     let processed;
     let transformedData;
     try {
@@ -60,22 +48,15 @@ export class RenderService {
     } catch (e) {
       transformedData = data.sampleData;
     }
-    // for (const transformer of template.transformers) {
-    //   transformedData = await this.transformerService.process(
-    //     transformer.transformer,
-    //     transformedData,
-    //     transformer.path,
-    //   );
-    // }
     switch (data.type) {
-      case TemplateType.JINJA:
+      case types.TemplateType.JINJA:
         processed = this.jinjaService.render(data.body, transformedData);
 
-      case TemplateType.JS_TEMPLATE_LITERALS:
+      case types.TemplateType.JS_TEMPLATE_LITERALS:
         processed = this.jstlService.render(data.body, transformedData);
         break;
 
-      case TemplateType.EJS:
+      case types.TemplateType.EJS:
         processed = this.ejsService.render(data.body, transformedData);
         break;
       default:
@@ -83,13 +64,13 @@ export class RenderService {
     }
     return {
       processed,
-      templateType: TemplateType.JS_TEMPLATE_LITERALS,
+      templateType: types.TemplateType.JS_TEMPLATE_LITERALS,
       data: data.sampleData,
-      template: 'test',
+      templateBody: data.body,
     };
   }
 
-  renderTemplateManyTest(data: RenderDtoTest): RenderResponse {
+  renderTemplateManyTest(data: types.RenderTestDTO): types.RenderResponse {
     const processed = [];
     let transformedData;
     try {
@@ -99,13 +80,13 @@ export class RenderService {
     }
     for (let i = 0; i < transformedData.length; i++) {
       switch (data.type) {
-        case TemplateType.JINJA:
+        case types.TemplateType.JINJA:
           processed.push({
             __index: transformedData[i].__index,
             body: this.jinjaService.render(data.body, transformedData[i]),
           });
 
-        case TemplateType.JS_TEMPLATE_LITERALS:
+        case types.TemplateType.JS_TEMPLATE_LITERALS:
           processed.push({
             __index: transformedData[i].__index,
             body: this.jstlService.render(data.body, transformedData[i]),
@@ -113,7 +94,7 @@ export class RenderService {
 
           break;
 
-        case TemplateType.EJS:
+        case types.TemplateType.EJS:
           processed.push({
             __index: transformedData[i].__index,
             body: this.ejsService.render(data.body, transformedData[i]),
@@ -125,9 +106,9 @@ export class RenderService {
     }
     return {
       processed,
-      templateType: TemplateType.JS_TEMPLATE_LITERALS,
+      templateType: types.TemplateType.JS_TEMPLATE_LITERALS,
       data: data.sampleData,
-      template: 'test',
+      templateBody: data.body,
     };
   }
 }
