@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { JinjaService } from 'src/engines/jinja/jinja.service';
-import { JsTLService } from 'src/engines/jstl/jstl.service';
-import { EjsService } from 'src/engines/ejs/ejs.service';
+import { JinjaService } from '../../engines/jinja/jinja.service';
+import { JsTLService } from '../../engines/jstl/jstl.service';
+import { EjsService } from '../../engines/ejs/ejs.service';
 import * as types from './types';
 
 @Injectable()
@@ -11,6 +11,10 @@ export class RenderService {
     private jstlService: JsTLService,
     private ejsService: EjsService,
   ) {}
+
+  test() {
+    return 'test';
+  }
 
   async renderTemplate(data: types.RenderDTO): Promise<types.RenderResponse> {
     const template = data.template;
