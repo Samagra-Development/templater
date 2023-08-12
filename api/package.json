@@ -5,6 +5,8 @@
   "author": "",
   "private": true,
   "license": "UNLICENSED",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
@@ -34,7 +36,7 @@
     "@nestjs/platform-fastify": "^8.2.6",
     "@nestjs/swagger": "^5.1.5",
     "@nestjs/terminus": "^8",
-    "@prisma/client": "3.5.0",
+    "@prisma/client": "^4.16.2",
     "@types/nunjucks": "^3.2.1",
     "ejs": "^3.1.6",
     "fastify-cors": "^6.0.3",
@@ -43,12 +45,15 @@
     "nunjucks": "^3.2.3",
     "passport-google-oauth20": "^2.0.0",
     "passport-jwt": "^4.0.0",
-    "prisma": "3.5.0",
+    "prisma": "^4.16.2",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
     "swagger-ui-express": "^4.1.6",
     "vm2": "^3.9.7"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^9.0.0"
   },
   "devDependencies": {
     "@compodoc/compodoc": "^1.1.18",
