@@ -1,22 +1,19 @@
 export enum TemplateType {
-  JINJA = 'JINJA',
-  JS_TEMPLATE_LITERALS = 'JS_TEMPLATE_LITERALS',
+  JSTL = 'JSTL',
   EJS = 'EJS',
+  JINJA = 'JINJA',
+}
+export interface Template {
+  content: string;
 }
 
-export interface template {
-  body: string;
-  id: string;
-  type: TemplateType;
+export interface RenderReq {
+  template: Template;
+  data: string | any;
+  engineType: string;
 }
 
-export interface RenderDTO {
-  template: template;
-  data: any;
-  templateType: string;
-}
-
-export interface RenderResponse {
+export interface RenderRes {
   processed: string | string[];
   templateType: TemplateType;
   data: any;

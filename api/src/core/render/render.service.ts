@@ -16,35 +16,35 @@ export class RenderService {
     return 'test';
   }
 
-  async renderTemplate(data: types.RenderDTO): Promise<types.RenderResponse> {
+  async renderTemplate(data: types.RenderReq): Promise<types.RenderRes> {
     const template = data.template;
     const transformedData = data.data;
     let processed;
-    switch (template.type) {
+    switch (data.engineType) {
       case types.TemplateType.JINJA:
-        processed = this.jinjaService.render(template.body, transformedData);
+        processed = this.jinjaService.render(template.content, transformedData);
         break;
 
-      case types.TemplateType.JS_TEMPLATE_LITERALS:
-        processed = this.jstlService.render(template.body, transformedData);
+      case types.TemplateType.JSTL:
+        processed = this.jstlService.render(template.content, transformedData);
         break;
 
       case types.TemplateType.EJS:
-        processed = this.ejsService.render(template.body, transformedData);
+        processed = this.ejsService.render(template.content, transformedData);
         break;
       default:
         throw 'Templates without template types not allowed';
     }
     return {
       processed,
-      templateType: template.type,
+      templateType: data.engineType,
       data: data.data,
-      templateBody: template.body,
+      templateBody: template.content,
       meta: 'meta',
     };
   }
 
-  renderTemplateTest(data: types.RenderTestDTO): types.RenderResponse {
+  renderTemplateTest(data: types.RenderTestDTO): types.RenderRes {
     let processed;
     let transformedData;
     try {
@@ -56,7 +56,7 @@ export class RenderService {
       case types.TemplateType.JINJA:
         processed = this.jinjaService.render(data.body, transformedData);
 
-      case types.TemplateType.JS_TEMPLATE_LITERALS:
+      case types.TemplateType.JSTL:
         processed = this.jstlService.render(data.body, transformedData);
         break;
 
@@ -68,13 +68,13 @@ export class RenderService {
     }
     return {
       processed,
-      templateType: types.TemplateType.JS_TEMPLATE_LITERALS,
+      templateType: types.TemplateType.JSTL,
       data: data.sampleData,
       templateBody: data.body,
     };
   }
 
-  renderTemplateManyTest(data: types.RenderTestDTO): types.RenderResponse {
+  renderTemplateManyTest(data: types.RenderTestDTO): types.RenderRes {
     const processed = [];
     let transformedData;
     try {
@@ -90,7 +90,7 @@ export class RenderService {
             body: this.jinjaService.render(data.body, transformedData[i]),
           });
 
-        case types.TemplateType.JS_TEMPLATE_LITERALS:
+        case types.TemplateType.JSTL:
           processed.push({
             __index: transformedData[i].__index,
             body: this.jstlService.render(data.body, transformedData[i]),
@@ -110,7 +110,7 @@ export class RenderService {
     }
     return {
       processed,
-      templateType: types.TemplateType.JS_TEMPLATE_LITERALS,
+      templateType: types.TemplateType.JSTL,
       data: data.sampleData,
       templateBody: data.body,
     };
